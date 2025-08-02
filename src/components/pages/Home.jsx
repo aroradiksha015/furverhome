@@ -11,6 +11,7 @@ export default function Home(){
     <div className="container">
       <div
         className="row no-gutters slider-text js-fullheight align-items-center justify-content-center"
+        style={{height:"712px"}}
         data-scrollax-parent="true"
       >
         <div className="col-md-11 ftco-animate text-center">
