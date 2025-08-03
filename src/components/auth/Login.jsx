@@ -41,7 +41,7 @@ export default function Login(){
                             className="contactForm"
                         >
                             <div className="row">
-                            <div className="col-md-6">
+                            <div className="col-md-12">
                                 <div className="form-group">
                                 <label className="label" htmlFor="email">
                                 Email
@@ -81,7 +81,7 @@ export default function Login(){
                                 <div className="form-group">
                                 <input
                                     type="submit"
-                                    defaultValue="Send Message"
+                                    defaultValue="Login"
                                     className="btn btn-primary"
                                 />
                                 <div className="submitting" />

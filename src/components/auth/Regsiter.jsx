@@ -1,6 +1,21 @@
 import { Link } from "react-router-dom"
-
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 export default function Register(){
+    const [name, setName]=useState("")
+    const [email, setEmail]=useState("")
+    const [password, setPassword]=useState("")
+    const [contact, setContact]=useState("")
+    let nav =useNavigate()
+    const handleForm=(e)=>{
+            e.preventDefault() 
+            if(email=="admin@gmail.com" && password=="2025"){
+                toast.success("Login successfully")
+                nav("/")
+            }else{
+                toast.error("In-valid Creds");
+            }
+        }
     return(
         <>
             <section
@@ -37,9 +52,9 @@ export default function Register(){
                         id="contactForm"
                         name="contactForm"
                         className="contactForm"
+                        onSubmit={handleForm}
                     >
                         <div className="row">
-                        
                         <div className="col-md-12">
                             <div className="form-group">
                             <label className="label" htmlFor="name">
@@ -51,6 +66,10 @@ export default function Register(){
                                 name="name"
                                 id="name"
                                 placeholder="Full name"
+                                value={name}
+                                    onChange={(e)=>{
+                                        setName(e.target.value)
+                                    }}
                             />
                             </div>
                         </div>
@@ -65,6 +84,11 @@ export default function Register(){
                                 name="email"
                                 id="email"
                                 placeholder="Email"
+                                value={email}
+                                onChange={(e)=>{
+                                    setEmail(e.target.value)
+                                    }}
+
                             />
                             </div>
                         </div>
@@ -74,11 +98,15 @@ export default function Register(){
                                 Password
                             </label>
                             <input
-                                type="text"
+                                type="password"
                                 className="form-control"
                                 name="password"
                                 id="password"
                                 placeholder="Password"
+                                value={password}
+                                onChange={(e)=>{
+                                    setPassword(e.target.value)
+                                    }}
                             />
                             </div>
                         </div>
@@ -95,6 +123,10 @@ export default function Register(){
                                 placeholder="Contact"
                                 minLength={10}
                                 maxLength={10}
+                                value={contact}
+                                onChange={(e)=>{
+                                    setContact(e.target.value)
+                                    }}
                             />
                             </div>
                         </div>
