@@ -8,6 +8,7 @@ import Contact from './components/pages/Contact';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/pages/Home';
 import Error from './components/pages/Error';
+import Login from './components/auth/login';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="blog" element={<Blog/>}></Route>
       <Route path="blogsingle" element={<Blogsingle/>}></Route>
       <Route path="contact" element={<Contact/>}></Route>
+       <Route path="login" element={<Login/>}></Route>
       </Route>
       <Route path="*" element={<Error/>}></Route>
       </Routes>

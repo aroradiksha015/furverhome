@@ -104,11 +104,7 @@ export default function Header(){
               Gallery
             </a> }
           </li>*/}
-          {/* <li className="nav-item">
-            <a href="pricing.html" className="nav-link">
-              Pricing
-            </a>
-          </li> */}
+          
           <li className="nav-item">
             <Link to="/blog" className="nav-link">
               Blog
@@ -117,6 +113,11 @@ export default function Header(){
           <li className="nav-item">
             <Link to="/contact" className="nav-link">
               Contact
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="login" className="nav-link">
+              Login
             </Link>
           </li>
         </ul>
