@@ -3,12 +3,11 @@ import About from './components/pages/About';
 import Blog  from './components/pages/Blog';
 import  Blogsingle from './components/pages/Blogsingle';
 import Contact from './components/pages/Contact';
-// import Pricing from './components/Pricing';
-// import Services from './components/Services';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/pages/Home';
 import Error from './components/pages/Error';
 import Login from './components/auth/login';
+import Register from './components/auth/Regsiter';
 
 function App() {
   return (
@@ -21,7 +20,8 @@ function App() {
       <Route path="blog" element={<Blog/>}></Route>
       <Route path="blogsingle" element={<Blogsingle/>}></Route>
       <Route path="contact" element={<Contact/>}></Route>
-       <Route path="login" element={<Login/>}></Route>
+      <Route path="login" element={<Login/>}></Route>
+      <Route path="register" element={<Register/>}></Route>
       </Route>
       <Route path="*" element={<Error/>}></Route>
       </Routes>
