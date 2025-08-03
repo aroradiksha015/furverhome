@@ -8,6 +8,7 @@ import Home from './components/pages/Home';
 import Error from './components/pages/Error';
 import Login from './components/auth/login';
 import Register from './components/auth/Regsiter';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       <Route path="*" element={<Error/>}></Route>
       </Routes>
     </BrowserRouter>
+    <ToastContainer/>
     </>
     
   );

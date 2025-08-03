@@ -1,8 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react"
+import { toast } from "react-toastify";
 export default function Login(){
     const [email, setEmail]=useState("")
     const [password, setPassword]=useState("")
+    let nav =useNavigate()
+    const handleForm=(e)=>{
+        e.preventDefault()
+        if(email=="admin@gmail.com" && password=="2025"){
+            toast.success("Valid creds")
+            nav("/")
+        }else{
+            toast.error("Invalid Creds")
+        }
+        
+    }
     return(
         <>
            <section
@@ -39,6 +51,7 @@ export default function Login(){
                             id="contactForm"
                             name="contactForm"
                             className="contactForm"
+                            onSubmit={handleForm}
                         >
                             <div className="row">
                             <div className="col-md-12">
@@ -65,7 +78,7 @@ export default function Login(){
                                     Password
                                 </label>
                                 <input
-                                    type="text"
+                                    type="password"
                                     className="form-control"
                                     name="password"
                                     id="password"
@@ -89,6 +102,7 @@ export default function Login(){
                             </div>
                             </div>
                         </form>
+                        <div>Don't have an Account? <Link to={"/register"}>Register Here!!</Link></div>
                         </div>
                     </div>
                     <div className="col-md-5 d-flex align-items-stretch">
