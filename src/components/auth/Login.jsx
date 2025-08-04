@@ -1,19 +1,23 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react"
 import { toast } from "react-toastify";
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../Firebase"
 export default function Login(){
     const [email, setEmail]=useState("")
     const [password, setPassword]=useState("")
     let nav =useNavigate()
     const handleForm=(e)=>{
         e.preventDefault()
-        if(email=="admin@gmail.com" && password=="2025"){
-            toast.success("Valid creds")
+        signInWithEmailAndPassword(auth,email,password)
+        .then((userCred)=>{
+            console.log(userCred.user.uid);
+            toast.success("Login Successfully");
             nav("/")
-        }else{
-            toast.error("Invalid Creds")
-        }
-        
+        })
+        .catch((err)=>{
+            toast.error(err.message)
+        }) 
     }
     return(
         <>
