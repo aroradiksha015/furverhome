@@ -1,10 +1,37 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { createUserWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../Firebase"
+import { toast } from "react-toastify"
+import { Timestamp } from "firebase/firestore"
 export default function Register(){
     const [name, setName]=useState("")
     const [email, setEmail]=useState("")
     const [password, setPassword]=useState("")
     const [contact, setContact]=useState("")
+    const handleForm = (e)=>{
+        e.preventDefault()
+        createUserWithEmailAndPassword(auth,email,password)
+        .then((userCred)=>{
+            console.log(userCred.user.uid)
+            toast.success("Registered Successfully")
+            saveData(userCred.user.uid)
+        })
+        .catch((err)=>{
+            toast.error(err.message);
+        }
+        )
+    }
+    const saveData = (userId)=>{
+        let data={
+            name:name,
+            email, 
+            contact, 
+            userType:3,
+            status:true, 
+            createdAt:Timestamp.now()
+        }
+    }
     return(
         <>
             <section
@@ -41,6 +68,7 @@ export default function Register(){
                         id="contactForm"
                         name="contactForm"
                         className="contactForm"
+                        onSubmit={handleForm}
                     >
                         <div className="row">
                         <div className="col-md-12">
