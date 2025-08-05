@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import { createUserWithEmailAndPassword } from "firebase/auth"
-import { auth } from "../Firebase"
+import { auth, db } from "../Firebase"
 import { toast } from "react-toastify"
-import { Timestamp } from "firebase/firestore"
+import { doc, setDoc, Timestamp } from "firebase/firestore"
 export default function Register(){
     const [name, setName]=useState("")
     const [email, setEmail]=useState("")
@@ -22,7 +22,7 @@ export default function Register(){
         }
         )
     }
-    const saveData = (userId)=>{
+    const saveData = async(userId)=>{
         let data={
             name:name,
             email, 
@@ -31,6 +31,8 @@ export default function Register(){
             status:true, 
             createdAt:Timestamp.now()
         }
+        console.log(data);
+        await setDoc(doc(db,"users",userId),data)
     }
     return(
         <>
