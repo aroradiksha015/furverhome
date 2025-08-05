@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react"
 import { toast } from "react-toastify";
-import { signInWithEmailAndPassword } from "firebase/auth"
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from "firebase/auth"
 import { auth } from "../Firebase"
 export default function Login(){
     const [email, setEmail]=useState("")
@@ -16,16 +16,32 @@ export default function Login(){
             nav("/")
         })
         .catch((err)=>{
+            console.log(err);
+            
             toast.error(err.message)
-        }) 
-    }
+        })
+    } 
+        const googleSignUp=()=>{
+                let provider=new GoogleAuthProvider()
+                signInWithPopup(auth, provider)
+                .then((userCred)=>{
+                    console.log(userCred.user.uid);
+                    toast.success("Login successfully")
+                    nav("/")
+                })
+                .catch((err)=>{
+                    toast.error(err.message);
+                    
+                })
+            }
+
     return(
         <>
            <section
         className="hero-wrap hero-wrap-2"
         style={{ backgroundImage: 'url("/assets/images/bg_2.jpg")' }}
         data-stellar-background-ratio="0.5"
-    >
+         >
         <div className="overlay" />
         <div className="container">
         <div className="row no-gutters slider-text align-items-end">
@@ -106,6 +122,7 @@ export default function Login(){
                             </div>
                             </div>
                         </form>
+                    <button onClick={googleSignUp} className="btn btn-danger"><i className="fa fa-google"></i> Sign in with Google</button>
                         <div>Don't have an Account? <Link to={"/register"}>Register Here!!</Link></div>
                         </div>
                     </div>
