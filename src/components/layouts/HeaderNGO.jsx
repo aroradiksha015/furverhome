@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Header(){
+export default function HeaderNGO(){
     return(
         <>
         <div className="wrap">
@@ -57,7 +57,7 @@ export default function Header(){
             </div>
           </div>
         </div>
-           <nav
+         <nav
     className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
     id="ftco-navbar"
   >
@@ -80,39 +80,29 @@ export default function Header(){
       <div className="collapse navbar-collapse" id="ftco-nav">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link to="/" className="nav-link">
+            <Link to="/ngo" className="nav-link">
               Home
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/about" className="nav-link">
-              About
+            <Link to="/pets" className="nav-link">
+            Pets
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/requests" className="nav-link">
+             Requests
             </Link>
           </li>
           <li className="nav-item">
             <Link to="/blog" className="nav-link">
-              Blog
+             Logout
             </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/contact" className="nav-link">
-              Contact
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="login" className="nav-link">
-              Login
-            </Link>
-            </li>
-            <li className="nav-item">
-            <Link to="/register" className="nav-link">
-              Register
-            </Link> 
           </li>
         </ul>
       </div>
     </div>
-          </nav>
+        </nav>
         </>
     )
 }

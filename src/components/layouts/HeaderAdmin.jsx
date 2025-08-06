@@ -1,6 +1,32 @@
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+export default function HeaderAdmin(){
+  let isLogin=sessionStorage.getItem("isLogin")
+  console.log(isLogin)
 
-export default function Header(){
+  let nav =useNavigate()
+  const logout=()=>{
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Logout!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        sessionStorage.clear()
+        nav("/login")
+        Swal.fire({
+          title: "Logout!",
+          icon: "success"
+        });
+      }
+    });
+   
+  }
     return(
         <>
         <div className="wrap">
@@ -57,7 +83,7 @@ export default function Header(){
             </div>
           </div>
         </div>
-           <nav
+         <nav
     className="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
     id="ftco-navbar"
   >
@@ -80,39 +106,54 @@ export default function Header(){
       <div className="collapse navbar-collapse" id="ftco-nav">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <Link to="/" className="nav-link">
+            <Link to="/admin" className="nav-link">
               Home
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/about" className="nav-link">
-              About
+            <Link to="/ngos" className="nav-link">
+               NGOs
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/blog" className="nav-link">
-              Blog
+            <Link to="/breeds" className="nav-link">
+             Breeds
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/contact" className="nav-link">
-              Contact
+            <Link to="/users" className="nav-link">
+              Users
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="login" className="nav-link">
-              Login
+            <Link to="requests" className="nav-link">
+              Requests
             </Link>
             </li>
             <li className="nav-item">
-            <Link to="/register" className="nav-link">
-              Register
+            <Link to="/pets" className="nav-link">
+             Pets
             </Link> 
           </li>
+          {
+            //condition?true:false
+          isLogin?
+          <li className="nav-item">
+            <Link to={"/admin"} onClick={logout} className="nav-link">
+              Logout
+            </Link>
+          </li>
+          :
+          <li className="nav-item">
+            <Link to={"/login"} className="nav-link">
+              Login
+            </Link>
+          </li>
+          }
         </ul>
       </div>
     </div>
-          </nav>
+        </nav>
         </>
     )
 }

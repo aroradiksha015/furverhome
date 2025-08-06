@@ -9,6 +9,10 @@ import Error from './components/pages/Error';
 import Login from './components/auth/login';
 import Register from './components/auth/Regsiter';
 import { ToastContainer } from 'react-toastify';
+import RegisterNGO from './components/auth/RegisterNGO';
+import MasterAdmin from './components/layouts/MasterAdmin';
+import MasterNGO from './components/layouts/MasterNGO';
+
 
 function App() {
   return (
@@ -23,8 +27,17 @@ function App() {
       <Route path="contact" element={<Contact/>}></Route>
       <Route path="login" element={<Login/>}></Route>
       <Route path="register" element={<Register/>}></Route>
+      <Route path="registerNGO" element={<RegisterNGO/>}></Route>
       </Route>
       <Route path="*" element={<Error/>}></Route>
+
+      {/* {admin} */}
+      <Route path="/admin" element={<MasterAdmin/>}></Route>
+
+      
+      {/* {NGO} */}
+      <Route path="/ngo" element={<MasterNGO/>}></Route>
+
       </Routes>
     </BrowserRouter>
     <ToastContainer/>

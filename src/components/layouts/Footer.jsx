@@ -154,7 +154,7 @@ export default function footer(){
               <li>
                 <a href="#">
                   <span className="icon fa fa-phone" />
-                  <span className="text">+91 98724 11356</span>
+                  <span className="text">+91 9876543210</span>
                 </a>
               </li>
               <li>

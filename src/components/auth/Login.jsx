@@ -2,8 +2,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react"
 import { toast } from "react-toastify";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from "firebase/auth"
-import { auth } from "../Firebase"
+import { auth, db } from "../Firebase"
+import { doc, getDoc } from "firebase/firestore";
 export default function Login(){
+
     const [email, setEmail]=useState("")
     const [password, setPassword]=useState("")
     let nav =useNavigate()
@@ -13,20 +15,29 @@ export default function Login(){
         .then((userCred)=>{
             console.log(userCred.user.uid);
             toast.success("Login Successfully");
-            nav("/")
+            getUserData(userCred.user.uid)
+        
+
+            nav("/admin")
         })
         .catch((err)=>{
             console.log(err);
             
             toast.error(err.message)
         })
-    } 
+    }
+       const getUserData=async(userId)=>{
+                    let userDoc=await getDoc(doc(db, "users", userId))
+                    let userData=userDoc.data()
+                    sessionStorage.setItem("isLogin", "true")
+          } 
         const googleSignUp=()=>{
                 let provider=new GoogleAuthProvider()
                 signInWithPopup(auth, provider)
                 .then((userCred)=>{
                     console.log(userCred.user.uid);
                     toast.success("Login successfully")
+                    getUserData(userCred.user.uid)
                     nav("/")
                 })
                 .catch((err)=>{
