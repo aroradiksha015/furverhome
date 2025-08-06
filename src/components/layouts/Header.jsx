@@ -1,6 +1,31 @@
 import { Link } from "react-router-dom";
-
+ import Swal from "sweetalert2";
+ import { useNavigate } from "react-router-dom";
 export default function Header(){
+  let isLogin=sessionStorage.getItem("isLogin")
+  console.log(isLogin)
+  let nav =useNavigate()
+  const logout=()=>{
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Logout!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        sessionStorage.clear()
+        nav("/login")
+        Swal.fire({
+          title: "Logout!",
+          icon: "success"
+        });
+      }
+    });
+  
+  }
     return(
         <>
         <div className="wrap">
@@ -98,17 +123,28 @@ export default function Header(){
             <Link to="/contact" className="nav-link">
               Contact
             </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="login" className="nav-link">
-              Login
-            </Link>
             </li>
+      
             <li className="nav-item">
             <Link to="/register" className="nav-link">
               Register
             </Link> 
           </li>
+          {
+            //condition?true:false
+          isLogin?
+          <li className="nav-item">
+            <Link to={"/admin"} onClick={logout} className="nav-link">
+              Logout
+            </Link>
+          </li>
+          :
+          <li className="nav-item">
+            <Link to={"/login"} className="nav-link">
+              Login
+            </Link>
+          </li>
+          }
         </ul>
       </div>
     </div>

@@ -9,6 +9,13 @@ export default function Login(){
     const [email, setEmail]=useState("")
     const [password, setPassword]=useState("")
     let nav =useNavigate()
+    const getUserData=async(userId)=>{
+                    let userDoc=await getDoc(doc(db, "users", userId))
+                    let userData=userDoc.data()
+                    sessionStorage.setItem("isLogin", "true")
+                    //  let isLogin=sessionStorage.getItem("isLogin")
+                    //  console.log(isLogin)
+             } 
     const handleForm=(e)=>{
         e.preventDefault()
         signInWithEmailAndPassword(auth,email,password)
@@ -18,7 +25,7 @@ export default function Login(){
             getUserData(userCred.user.uid)
         
 
-            nav("/admin")
+            // nav("/admin")
         })
         .catch((err)=>{
             console.log(err);
@@ -26,11 +33,7 @@ export default function Login(){
             toast.error(err.message)
         })
     }
-       const getUserData=async(userId)=>{
-                    let userDoc=await getDoc(doc(db, "users", userId))
-                    let userData=userDoc.data()
-                    sessionStorage.setItem("isLogin", "true")
-          } 
+       
         const googleSignUp=()=>{
                 let provider=new GoogleAuthProvider()
                 signInWithPopup(auth, provider)
