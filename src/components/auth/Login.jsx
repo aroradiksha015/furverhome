@@ -5,31 +5,39 @@ import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signIn
 import { auth, db } from "../Firebase"
 import { doc, getDoc } from "firebase/firestore";
 export default function Login(){
-
     const [email, setEmail]=useState("")
     const [password, setPassword]=useState("")
     let nav =useNavigate()
     const getUserData=async(userId)=>{
                     let userDoc=await getDoc(doc(db, "users", userId))
                     let userData=userDoc.data()
+                    if(userData?.status==true){
                     sessionStorage.setItem("isLogin", "true")
-                    //  let isLogin=sessionStorage.getItem("isLogin")
-                    //  console.log(isLogin)
-             } 
+                    sessionStorage.setItem("name", userData?.name)
+                    sessionStorage.setItem("email", userData?.email)
+                    sessionStorage.setItem("userType", userData?.userType)
+                    sessionStorage.setItem("userID", userData?.userId)
+                    toast.success("Login Successfully")
+                    if(userData?.userType==1){
+                    nav("/admin")
+                    } else if(userData?.userType==2){
+                     nav("/ngo")
+                    }else {
+                     nav("/")
+                    }
+                    }else{
+                        toast.error("Error is Blocked")
+                    }
+                } 
     const handleForm=(e)=>{
         e.preventDefault()
-        signInWithEmailAndPassword(auth,email,password)
+         signInWithEmailAndPassword(auth,email,password)
         .then((userCred)=>{
             console.log(userCred.user.uid);
-            toast.success("Login Successfully");
             getUserData(userCred.user.uid)
-        
-
-            // nav("/admin")
         })
         .catch((err)=>{
-            console.log(err);
-            
+            console.log(err);  
             toast.error(err.message)
         })
     }
