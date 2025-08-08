@@ -12,6 +12,9 @@ import { ToastContainer } from 'react-toastify';
 import RegisterNGO from './components/auth/RegisterNGO';
 import MasterAdmin from './components/layouts/MasterAdmin';
 import MasterNGO from './components/layouts/MasterNGO';
+import AddBreeds from './components/admin/breeds/AddBreeds';
+import AddNGO from './components/admin/NGO/AddNGO';
+import AddPet from './components/ngo/AddPet';
 
 
 function App() {
@@ -32,11 +35,16 @@ function App() {
       <Route path="*" element={<Error/>}></Route>
 
       {/* {admin} */}
-      <Route path="/admin" element={<MasterAdmin/>}></Route>
+      <Route path="/admin" element={<MasterAdmin/>}>
+      <Route path="addBreeds" element={<AddBreeds/>}></Route>
+      <Route path="addNGO" element={<AddNGO/>}></Route>
+      </Route>
 
       
       {/* {NGO} */}
-      <Route path="/ngo" element={<MasterNGO/>}></Route>
+      <Route path="/ngo" element={<MasterNGO/>}>
+      <Route path="addpet" element={<AddPet/>}></Route>
+      </Route>
 
       </Routes>
     </BrowserRouter>

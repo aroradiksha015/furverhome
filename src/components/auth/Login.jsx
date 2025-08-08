@@ -3,7 +3,7 @@ import { useState } from "react"
 import { toast } from "react-toastify";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from "firebase/auth"
 import { auth, db } from "../Firebase"
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc,setDoc, Timestamp } from "firebase/firestore";
 export default function Login(){
     const [email, setEmail]=useState("")
     const [password, setPassword]=useState("")
@@ -28,7 +28,7 @@ export default function Login(){
                     }else{
                         toast.error("Error is Blocked")
                     }
-                } 
+    } 
     const handleForm=(e)=>{
         e.preventDefault()
          signInWithEmailAndPassword(auth,email,password)
@@ -41,21 +41,35 @@ export default function Login(){
             toast.error(err.message)
         })
     }
+    const saveData=async (userId, userCred)=>{
+                            // console.log(userId);
+                            let data={
+                                name:userCred.user.displayName,
+                                email:userCred.user.email, 
+                                contact:userCred.user.phoneNumber, 
+                                provider:"google",
+                                userType:3,
+                                status:true, 
+                                createdAt:Timestamp.now()
+                            }
+                            console.log(data);
+                            await setDoc(doc(db,"users", userId), data)
+                            getUserData(userId)
+    }
        
-        const googleSignUp=()=>{
+    const googleSignUp=()=>{
                 let provider=new GoogleAuthProvider()
                 signInWithPopup(auth, provider)
                 .then((userCred)=>{
                     console.log(userCred.user.uid);
-                    toast.success("Login successfully")
-                    getUserData(userCred.user.uid)
-                    nav("/")
+                   saveData(userCred.user.uid, userCred)
+                   nav("/")
                 })
                 .catch((err)=>{
                     toast.error(err.message);
                     
                 })
-            }
+    }
 
     return(
         <>
