@@ -2,9 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 export default function HeaderAdmin(){
-  let isLogin=sessionStorage.getItem("isLogin")
-  console.log(isLogin)
-
+  let isLogin=sessionStorage.getItem("isLogin");
   let nav =useNavigate()
   const logout=()=>{
     Swal.fire({
@@ -110,16 +108,27 @@ export default function HeaderAdmin(){
               Home
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/ngos" className="nav-link">
-               NGOs
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/breeds" className="nav-link">
-             Breeds
-            </Link>
-          </li>
+          <li className="nav-item dropdown">
+          <a className="dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            NGOs
+          </a>
+
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <Link to={"/admin/addNGO"} className="dropdown-item">Add</Link>
+            <Link to={"/admin/manageNGO"} className="dropdown-item">Manage</Link>
+          </div>
+        </li>
+          <li className="nav-item dropdown">
+          <a className="dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Breed
+          </a>
+
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <Link to={"/admin/addBreeds"} className="dropdown-item">Add</Link>
+            <Link to={"/admin/manageBreeds"} className="dropdown-item">Manage</Link>
+          </div>
+        </li>
+         
           <li className="nav-item">
             <Link to="/users" className="nav-link">
               Users
@@ -131,7 +140,7 @@ export default function HeaderAdmin(){
             </Link>
             </li>
             <li className="nav-item">
-            <Link to="/pets" className="nav-link">
+            <Link to="/admin/managePet" className="nav-link">
              Pets
             </Link> 
           </li>

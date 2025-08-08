@@ -1,5 +1,5 @@
-import { addDoc, collection, Timestamp } from "firebase/firestore"
-import { useState } from "react"
+import { addDoc, collection, onSnapshot, query, Timestamp } from "firebase/firestore"
+import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import axios from "axios"
 import { db } from "../Firebase"
@@ -10,6 +10,21 @@ export default function AddPet(){
     const [type, setType]=useState("")
     const [image, setImage]=useState({})
     const [imageName, setImageName]=useState("")
+    const [data, setData]=useState([])
+            useEffect(()=>{
+                fetchData()
+            },[])
+            const fetchData=()=>{
+                let q=query(collection(db,"breeds")
+            )
+                onSnapshot(q,(breedsCol)=>{
+                    let breedsData=breedsCol.docs.map((el)=>{
+                       return {...el.data(), id:el.id}
+                    })
+                    setData(breedsData)
+                })
+            }
+            console.log(data);
      const saveData=async (imageUrl)=>{
         try{
             let data={
@@ -105,7 +120,7 @@ export default function AddPet(){
                                 className="form-control"
                                 name="petname"
                                 id="petname"
-                                placeholder="Breed Name"
+                                placeholder="Pet Name"
                                 value={petname}
                                 onChange={(e)=>{
                                     setPetName(e.target.value)
@@ -133,10 +148,17 @@ export default function AddPet(){
                         </div>
                         <div className="col-md-12">
                             <div className="form-group">
-                            <label className="label" htmlFor="text">
-                                Type
+                            <label className="label" htmlFor="breed">
+                                Choose Breed
                             </label>
-                            <select
+
+                            <select className="form-control">
+                            <option>Choose Breed</option>
+                            {data?.map((el,index)=>(
+                                <option value={el.id}>{el.breedName}</option>
+                            ))}
+                        </select>
+                            {/* <select
                                 className="form-control"
                                value={type}
                                onChange={(e)=>{
@@ -146,7 +168,7 @@ export default function AddPet(){
                                 <option selected disabled value={""}>Choose one</option>
                                 <option>Dog</option>
                                 <option>Cat</option>
-                            </select>
+                            </select> */}
                             </div>
                         </div>
                          <div className="col-md-12">

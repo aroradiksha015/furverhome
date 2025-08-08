@@ -115,16 +115,29 @@ export default function Header(){
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/blog" className="nav-link">
-              Blog
+            <Link to="/ViewBreeds" className="nav-link">
+              Breeds
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/contact" className="nav-link">
-              Contact
+            <Link to="/ViewPets" className="nav-link">
+              Pets
             </Link>
             </li>
-      
+             <li className="nav-item">
+            <Link to="/ViewNGO" className="nav-link">
+              NGO
+            </Link>
+            </li>
+            <li className="nav-item dropdown">
+          <a className="dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Adoption
+          </a>
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <Link to="#" className="dropdown-item">Add Adoption Request</Link>
+            <Link to="#" className="dropdown-item">Track Request</Link>
+          </div>
+           </li>
             <li className="nav-item">
             <Link to="/register" className="nav-link">
               Register

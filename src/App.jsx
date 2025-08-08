@@ -15,6 +15,13 @@ import MasterNGO from './components/layouts/MasterNGO';
 import AddBreeds from './components/admin/breeds/AddBreeds';
 import AddNGO from './components/admin/NGO/AddNGO';
 import AddPet from './components/ngo/AddPet';
+import ManageBreeds from './components/admin/breeds/ManageBreeds';
+import ManageNGO from './components/admin/NGO/ManageNGO';
+import ViewBreeds from './components/user/ViewBreeds';
+import ViewPets from './components/user/ViewPets';
+import ViewNG0 from './components/user/ViewNGO';
+import ManagePets from './components/ngo/ManagePet';
+import ManagePet from './components/admin/pets/ManagePet';
 
 
 function App() {
@@ -25,26 +32,37 @@ function App() {
       <Route path="/" element={<Master/>}>
       <Route index element={<Home/>}></Route>
       <Route path="about" element = {<About/>}></Route>
-      <Route path="blog" element={<Blog/>}></Route>
-      <Route path="blogsingle" element={<Blogsingle/>}></Route>
+      {/* <Route path="blog" element={<Blog/>}></Route> */}
+      {/* <Route path="blogsingle" element={<Blogsingle/>}></Route> */}
       <Route path="contact" element={<Contact/>}></Route>
       <Route path="login" element={<Login/>}></Route>
       <Route path="register" element={<Register/>}></Route>
-      <Route path="registerNGO" element={<RegisterNGO/>}></Route>
+      {/* <Route path="registerNGO" element={<RegisterNGO/>}></Route> */}
+      <Route path="viewBreeds" element={<ViewBreeds/>}></Route>
+      <Route path="viewPets" element={<ViewPets/>}></Route>
+      <Route path="viewNGO" element = {<ViewNG0/>}></Route>
       </Route>
       <Route path="*" element={<Error/>}></Route>
 
       {/* {admin} */}
       <Route path="/admin" element={<MasterAdmin/>}>
       <Route path="addBreeds" element={<AddBreeds/>}></Route>
+      <Route path="manageBreeds" element={<ManageBreeds/>}></Route>
       <Route path="addNGO" element={<AddNGO/>}></Route>
+      <Route path="manageNGO" element={<ManageNGO/>}></Route>
+      <Route path="managePet"element={<ManagePet/>}></Route>
+
       </Route>
 
       
       {/* {NGO} */}
       <Route path="/ngo" element={<MasterNGO/>}>
-      <Route path="addpet" element={<AddPet/>}></Route>
+      <Route path="addPets" element={<AddPet/>}></Route>
+      <Route path="managePets" element={<ManagePets/>}></Route>
+
       </Route>
+
+      
 
       </Routes>
     </BrowserRouter>

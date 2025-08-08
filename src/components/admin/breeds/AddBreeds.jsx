@@ -6,7 +6,7 @@ import axios from "axios"
 export default function AddBreeds(){
     const [breedName, setBreedName]=useState("")
     const [description, setDescription]=useState("")
-    const [type, setType]=useState("")
+    const [breed, setBreed]=useState("")
     const [image, setImage]=useState({})
     const [imageName, setImageName]=useState("")
      const saveData=async (imageUrl)=>{
@@ -23,7 +23,7 @@ export default function AddBreeds(){
             toast.success("Breed added successfully!!")
             setBreedName("")
             setDescription("")
-            setType("")
+            setBreed("")
             setImage({})
             setImageName("")
         }
@@ -128,22 +128,23 @@ export default function AddBreeds(){
                             />
                             </div>
                         </div>
+
                         <div className="col-md-12">
                             <div className="form-group">
-                            <label className="label" htmlFor="text">
-                                Type
+                            <label className="label" htmlFor="breed">
+                                Add Breed
                             </label>
-                            <select
+                            <input
+                                type="breed"
                                 className="form-control"
-                               value={type}
+                                name="breed"
+                                id="breed"
+                                placeholder="Breed"
+                               value={breed}
                                onChange={(e)=>{
-                                setType(e.target.value)
+                                setBreed(e.target.value)
                                }}
-                            >
-                                <option selected disabled value={""}>Choose one</option>
-                                <option>Dog</option>
-                                <option>Cat</option>
-                            </select>
+                            />
                             </div>
                         </div>
                         <div className="col-md-12">

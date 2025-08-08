@@ -108,16 +108,19 @@ export default function HeaderNGO(){
               Home
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/pets" className="nav-link">
+          <li className="nav-item dropdown">
+          <a className="dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Pets
-            </Link>
-          </li>
+          </a>
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <Link to={"/ngo/addPets"} className="dropdown-item">Add</Link>
+            <Link to={"/ngo/managePets"} className="dropdown-item">Manage</Link>
+          </div>
+        </li>
           <li className="nav-item">
             <Link to="/requests" className="nav-link">
              Requests
             </Link>
-          
           </li>
           {
             //condition?true:false
