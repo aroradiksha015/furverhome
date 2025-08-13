@@ -32,6 +32,9 @@ export default function AddPet(){
                 description,
                 age,
                 type,
+                ngoId:sessionStorage.getItem("userID"),
+                ngoname:sessionStorage.getItem("name"),
+                ngoemail:sessionStorage.getItem("email"),
                 imageUrl,
                 status:true,
                 createdAt:Timestamp.now()

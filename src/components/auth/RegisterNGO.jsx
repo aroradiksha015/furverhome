@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { Timestamp, setDoc, doc } from "firebase/firestore"
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 import { auth, db } from "../Firebase"
 
@@ -10,6 +10,7 @@ export default function RegisterNGO(){
     const [email, setEmail]=useState("")
     const [password, setPassword]=useState("")
     const [contact, setContact]=useState("")
+ let nav = useNavigate()
     const handleForm = (e)=>{
         e.preventDefault()
         createUserWithEmailAndPassword(auth,email,password)
@@ -17,6 +18,7 @@ export default function RegisterNGO(){
             console.log(userCred.user.uid)
             toast.success("Registered Successfully")
             saveData(userCred.user.uid)
+            nav("/ngo")
         })
         .catch((err)=>{
             toast.error(err.message);
@@ -28,7 +30,7 @@ export default function RegisterNGO(){
             name:name,
             email, 
             contact, 
-            userType:3,
+            userType:2,
             status:true, 
             createdAt:Timestamp.now()
         }

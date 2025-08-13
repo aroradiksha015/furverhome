@@ -13,17 +13,17 @@ import RegisterNGO from './components/auth/RegisterNGO';
 import MasterAdmin from './components/layouts/MasterAdmin';
 import MasterNGO from './components/layouts/MasterNGO';
 import AddBreeds from './components/admin/breeds/AddBreeds';
-import AddNGO from './components/admin/NGO/AddNGO';
 import AddPet from './components/ngo/AddPet';
 import ManageBreeds from './components/admin/breeds/ManageBreeds';
-import ManageNGO from './components/admin/NGO/ManageNGO';
 import ViewBreeds from './components/user/ViewBreeds';
 import ViewPets from './components/user/ViewPets';
 import ViewNG0 from './components/user/ViewNGO';
 import ManagePets from './components/ngo/ManagePet';
 import ManagePet from './components/admin/pets/ManagePet';
-
-
+import AddNGO from './components/admin/ngos/AddNGO';
+import ManageNGO from './components/admin/ngos/ManageNGO';
+import UpdateBreed from './components/admin/breeds/UpdateBreeds';
+import UpdatePet from './components/ngo/UpdatePet';
 function App() {
   return (
     <>
@@ -37,7 +37,7 @@ function App() {
       <Route path="contact" element={<Contact/>}></Route>
       <Route path="login" element={<Login/>}></Route>
       <Route path="register" element={<Register/>}></Route>
-      {/* <Route path="registerNGO" element={<RegisterNGO/>}></Route> */}
+      <Route path="registerNGO" element={<RegisterNGO/>}></Route>
       <Route path="viewBreeds" element={<ViewBreeds/>}></Route>
       <Route path="viewPets" element={<ViewPets/>}></Route>
       <Route path="viewNGO" element = {<ViewNG0/>}></Route>
@@ -51,14 +51,17 @@ function App() {
       <Route path="addNGO" element={<AddNGO/>}></Route>
       <Route path="manageNGO" element={<ManageNGO/>}></Route>
       <Route path="managePet"element={<ManagePet/>}></Route>
+      <Route path="updateBreed/:id"element={<UpdateBreed/>}></Route>
 
       </Route>
 
       
       {/* {NGO} */}
       <Route path="/ngo" element={<MasterNGO/>}>
+      {/* <Route path="/registerNGO" element={<RegisterNGO/>}></Route> */}
       <Route path="addPets" element={<AddPet/>}></Route>
       <Route path="managePets" element={<ManagePets/>}></Route>
+      <Route path="updatePets/:id" element={<UpdatePet/>}></Route>
 
       </Route>
 

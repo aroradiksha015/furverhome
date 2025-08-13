@@ -1,14 +1,15 @@
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot, query, where} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../Firebase";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 export default function ManageNGO(){
            const [data, setData]=useState([])
             useEffect(()=>{
                 fetchData()
             },[])
             const fetchData=()=>{
-                let q=query(collection(db,"ngo")
-            )
+                let q=query(collection(db,"users"),where("userType","==",2));
                 onSnapshot(q, (ngoCol)=>{
                     let ngoData=ngoCol.docs.map((el)=>{
                     
@@ -18,6 +19,31 @@ export default function ManageNGO(){
                 })
             }
             console.log(data);
+            const deletengo = async(userid)=>{
+                   Swal.fire({
+                  title: "Are you sure?",
+                  text: "You won't be able to revert this!",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                     deleteDoc(doc(db,"users",userid))
+                     .then(()=>{
+                         Swal.fire({
+                           title: "Deleted!",
+                           text: "Your file has been deleted.",
+                           icon: "success"
+                         });
+                     })
+                     .catch((err)=>{
+                        toast.error(err.message)
+                     })
+                  }
+                });
+                   }
          
             return(
                 <>
@@ -57,6 +83,7 @@ export default function ManageNGO(){
                                     <th>License Number</th>
                                     <th>Contact</th>
                                     <th>Address</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,16 +96,13 @@ export default function ManageNGO(){
                                         <td>{el?.licenseNO}</td>
                                         <td>{el?.contact}</td>
                                         <td>{el?.address}</td>
+                                        <td>
+                                        <Link className="btn btn-danger" onClick={()=>{deletengo(el.id)}}>Delete</Link>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
-                        <select>
-                            <option>Choose Breed</option>
-                            {data?.map((el,index)=>(
-                                <option value={el.id}>{el.breedName}</option>
-                            ))}
-                        </select>
                     </div>
                 </>
             )

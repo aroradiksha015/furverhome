@@ -1,6 +1,8 @@
-import { collection, onSnapshot, query } from "firebase/firestore"
+import { collection, deleteDoc, doc, onSnapshot, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../Firebase"
+import { Link } from "react-router-dom"
+import Swal from "sweetalert2"
 
 export default function ManagePets(){
     useEffect(()=>{
@@ -17,6 +19,31 @@ export default function ManagePets(){
             setData(petsData)
         })
     }
+         const deletepet = async(petid)=>{
+                            Swal.fire({
+                              title: "Are you sure?",
+                              text: "You won't be able to revert this!",
+                              icon: "warning",
+                              showCancelButton: true,
+                              confirmButtonColor: "#3085d6",
+                              cancelButtonColor: "#d33",
+                              confirmButtonText: "Yes, delete it!"
+                            }).then((result) => {
+                              if (result.isConfirmed) {
+                                 deleteDoc(doc(db,"pets",petid))
+                                 .then(()=>{
+                                     Swal.fire({
+                                       title: "Deleted!",
+                                       text: "Your file has been deleted.",
+                                       icon: "success"
+                                     });
+                                 })
+                                 .catch((err)=>{
+                                    toast.error(err.message)
+                                 })
+                              }
+                            });
+                               }
     return(
         <>
           <section
@@ -72,9 +99,13 @@ export default function ManagePets(){
                         </div>
                         </div>
                     </div>
+                   
+                    <Link className="btn btn-success" to={"/ngo/updatePets/"+el.id}>Edit</Link>
+
+                    <Link className="btn btn-danger" onClick={()=>{deletepet(el.id)}}>Delete</Link> 
                     </div>
                     ))}
-                   
+                
                 </div>
                 </div>
             </section>

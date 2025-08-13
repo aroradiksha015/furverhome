@@ -1,7 +1,8 @@
-import { collection, onSnapshot, query } from "firebase/firestore"
+import { collection, deleteDoc, doc, onSnapshot, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../../Firebase"
-// import { db } from "../../Firebase"
+import { Link } from "react-router-dom"
+import Swal from "sweetalert2"
 
 
 export default function ManagePet(){
@@ -13,12 +14,37 @@ export default function ManagePet(){
         let q=query(collection(db,"pets"))
         onSnapshot(q,(petsCol)=>{
             let petsData=petsCol.docs.map((el)=>{
-                return{...el.data(),id: el.id};
-                
+                return{...el.data(),id: el.id};  
             })
+            console.log(petsData);
             setData(petsData)
         })
     }
+     const deletepet = async(petid)=>{
+                    Swal.fire({
+                      title: "Are you sure?",
+                      text: "You won't be able to revert this!",
+                      icon: "warning",
+                      showCancelButton: true,
+                      confirmButtonColor: "#3085d6",
+                      cancelButtonColor: "#d33",
+                      confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                         deleteDoc(doc(db,"pets",petid))
+                         .then(()=>{
+                             Swal.fire({
+                               title: "Deleted!",
+                               text: "Your file has been deleted.",
+                               icon: "success"
+                             });
+                         })
+                         .catch((err)=>{
+                            toast.error(err.message)
+                         })
+                      }
+                    });
+                       }
     return(
         <>
           <section
@@ -73,7 +99,9 @@ export default function ManagePet(){
                             </h2>
                         </div>
                         </div>
+                         
                     </div>
+                    <Link className="btn btn-danger" onClick={()=>{deletepet(el.id)}}>Delete</Link>
                     </div>
                     ))}
                    

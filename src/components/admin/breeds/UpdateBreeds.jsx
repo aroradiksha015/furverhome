@@ -1,16 +1,59 @@
-import { addDoc, collection, Timestamp } from "firebase/firestore"
-import { useState } from "react"
+import { addDoc, collection, doc, getDoc, Timestamp } from "firebase/firestore"
+import { useEffect, useState } from "react"
 import { db } from "../../Firebase"
 import { toast } from "react-toastify"
 import axios from "axios"
-export default function AddBreeds(){
+import { Link, useParams } from "react-router-dom"
+
+export default function UpdateBreed(){
     const [breedName, setBreedName]=useState("")
     const [description, setDescription]=useState("")
-    // const [breed, setBreed]=useState("")
-    const [type, setType]=useState("")
+    const [breed, setBreed]=useState("")
     const [image, setImage]=useState({})
     const [imageName, setImageName]=useState("")
-     const saveData=async (imageUrl)=>{
+    const [type, setType]=useState("")
+
+    
+    const [previousimage, setpreviousimage]=useState("")
+    var {id} = useParams()
+    console.log("params is",id);
+    const fetchdata=async()=>{
+        let breedDoc =await getDoc(doc(db,"breeds",id))
+        let breedData = breedDoc.data()
+        console.log("breed data",breedData);
+        setBreedName(breedData.breedName)
+        setDescription(breedData.description)
+        setType(breedData.type)
+        setpreviousimage(breedData.imageUrl)
+        
+    }
+    useEffect(()=>{
+        fetchdata()
+    },[])
+    
+    const handleForm=async (e)=>{
+        e.preventDefault()
+        let formData=new FormData()
+        formData.append("file", image)
+        formData.append("upload_preset","breedImages")
+        try{
+            const response = await axios.post(
+                `https://api.cloudinary.com/v1_1/dgnkp6a25/image/upload`,
+                formData
+            );
+            saveData(response.data.secure_url);
+            
+        }
+        catch(err){
+            toast.error(err.message)
+        }
+    }
+    const changeImage=(e)=>{
+        setImageName(e.target.value)
+        setImage(e.target.files[0]);
+    }
+    const saveData=async (imageUrl)=>{
+      
         try{
             let data={
                 breedName,
@@ -24,36 +67,14 @@ export default function AddBreeds(){
             toast.success("Breed added successfully!!")
             setBreedName("")
             setDescription("")
-            // setBreed("")
+            setType("")
             setImage({})
             setImageName("")
-            setType("")
         }
         catch(err){
             toast.error(err.message)
         }
     }
-    const handleForm=async (e)=>{
-        e.preventDefault()
-        let formData=new FormData()
-        formData.append("file", image)
-        formData.append("upload_preset","BreedsImages")
-        try{
-            const response = await axios.post(
-                `https://api.cloudinary.com/v1_1/dgnkp6a25/image/upload`, 
-                formData
-            );  
-            saveData(response.data.secure_url);
-        }
-        catch(err){
-            toast.error(err.message)
-        }
-    }
-    const changeImage=(e)=>{
-        setImageName(e.target.value)
-        setImage(e.target.files[0]);
-    }
-    
     return(
         <>
           <section
@@ -81,10 +102,14 @@ export default function AddBreeds(){
                 </div>
             </section>
             <div className="container my-5">
+                <div className="d-flex justify-content-end">
+                </div>
                 <div className="row justify-content-center no-gutters">
+                    
                 <div className="col-md-7" style={{boxShadow:"0px 0px 10px gray"}}>
                     <div className="contact-wrap w-100 p-md-5 p-4">
-                    <h3 className="mb-4">Add Breed</h3>
+                    <h3 className="mb-4">Update Breed</h3>
+                    <img src={previousimage} height={"100px"} width={"100px"} alt="" />
                     <form
                         method="POST"
                         id="contactForm"
@@ -130,7 +155,25 @@ export default function AddBreeds(){
                             />
                             </div>
                         </div>
-                         <div className="col-md-12">
+                        {/* <div className="col-md-12">
+                            <div className="form-group">
+                            <label className="label" htmlFor="breed">
+                                Add Breed
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="breed"
+                                id="breed"
+                                placeholder="Breed"
+                               value={breed}
+                               onChange={(e)=>{
+                                setBreed(e.target.value)
+                               }}
+                            />
+                            </div>
+                        </div> */}
+                        <div className="col-md-12">
                             <div className="form-group">
                             <label className="label" htmlFor="text">
                                 Type
@@ -148,6 +191,7 @@ export default function AddBreeds(){
                             </select>
                             </div>
                         </div>
+                        
                         <div className="col-md-12">
                             <div className="form-group">
                             <label className="label" htmlFor="text">
@@ -177,7 +221,7 @@ export default function AddBreeds(){
                         </div>
                     </form>
                     </div>
-                    
+                   
                 </div>
                 
                 </div>

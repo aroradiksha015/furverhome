@@ -1,5 +1,8 @@
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
+// import { db } from "../../Firebase";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import { db } from "../../Firebase";
 
 export default function ManageBreeds(){
@@ -8,18 +11,45 @@ export default function ManageBreeds(){
         fetchData()
     },[])
     const fetchData=()=>{
-        // getDoc, getDocs, onSnapshot (realtime)
+        
         let q=query(collection(db,"breeds")
-        // , where("type","==","Cat")
     )
         onSnapshot(q, (breedCol)=>{
             let breedData=breedCol.docs.map((el)=>{
             
                return {...el.data(), id:el.id}
             })
+            console.log(breedData);
             setData(breedData)
         })
     }
+      const deletebreed = async(breedid)=>{
+       Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+         deleteDoc(doc(db,"breeds",breedid))
+         .then(()=>{
+             Swal.fire({
+               title: "Deleted!",
+               text: "Your file has been deleted.",
+               icon: "success"
+             });
+         })
+         .catch((err)=>{
+            toast.error(err.message)
+         })
+      }
+    });
+       }
+       
+
  
     return(
         <>
@@ -55,8 +85,9 @@ export default function ManageBreeds(){
                             <th>Sno</th>
                             <th>Image</th>
                             <th>Breed name</th>
-                            <th>Type</th>
                             <th>Description</th>
+                            <th>Type</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,18 +98,17 @@ export default function ManageBreeds(){
                                     <img src={el?.imageUrl} style={{height:"50px", width:"50px"}}/>
                                 </td>
                                 <td>{el?.breedName}</td>
-                                <td>{el?.type}</td>
+                                
                                 <td>{el?.description}</td>
+                                <td>{el?.type}</td>
+                                <td>
+                               <Link className="btn btn-success" to={"/admin/updateBreed/"+el.id}>Edit</Link>
+                               <Link className="btn btn-danger" onClick={()=>{deletebreed(el.id)}}>Delete</Link>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-                <select>
-                    <option>Choose Breed</option>
-                    {data?.map((el,index)=>(
-                        <option value={el.id}>{el.breedName}</option>
-                    ))}
-                </select>
             </div>
         </>
     )

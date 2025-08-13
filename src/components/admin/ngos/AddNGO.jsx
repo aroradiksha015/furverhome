@@ -20,11 +20,12 @@ export default function AddNGO(){
                         licenseNO,
                         about,
                         address,
+                        usertype:2,
                         status:true,
                         createdAt:Timestamp.now()
                     }
                     console.log(data);
-                    await addDoc(collection(db,"ngo"),data)
+                    await addDoc(collection(db,"users"),data)
                     toast.success("NGO added successfully!!")
                     setName("")
                     setEmail("")

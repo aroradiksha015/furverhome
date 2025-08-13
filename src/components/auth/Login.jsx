@@ -11,12 +11,13 @@ export default function Login(){
     const getUserData=async(userId)=>{
                     let userDoc=await getDoc(doc(db, "users", userId))
                     let userData=userDoc.data()
+                    console.log(userData);
                     if(userData?.status==true){
                     sessionStorage.setItem("isLogin", "true")
                     sessionStorage.setItem("name", userData?.name)
                     sessionStorage.setItem("email", userData?.email)
                     sessionStorage.setItem("userType", userData?.userType)
-                    sessionStorage.setItem("userID", userData?.userId)
+                    sessionStorage.setItem("userID", userId)
                     toast.success("Login Successfully")
                     if(userData?.userType==1){
                     nav("/admin")

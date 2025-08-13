@@ -1,33 +1,52 @@
-import { addDoc, collection, Timestamp } from "firebase/firestore"
-import { useState } from "react"
-import { db } from "../../Firebase"
+import { addDoc, collection, onSnapshot, query, Timestamp } from "firebase/firestore"
+import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import axios from "axios"
-export default function AddBreeds(){
-    const [breedName, setBreedName]=useState("")
+import { db } from "../Firebase"
+export default function UpdatePet(){
+    const [petname, setPetName]=useState("")
     const [description, setDescription]=useState("")
-    // const [breed, setBreed]=useState("")
+    const [age, setAge]=useState("")
     const [type, setType]=useState("")
     const [image, setImage]=useState({})
     const [imageName, setImageName]=useState("")
+    const [data, setData]=useState([])
+            useEffect(()=>{
+                fetchData()
+            },[])
+            const fetchData=()=>{
+                let q=query(collection(db,"breeds")
+            )
+                onSnapshot(q,(breedsCol)=>{
+                    let breedsData=breedsCol.docs.map((el)=>{
+                       return {...el.data(), id:el.id}
+                    })
+                    setData(breedsData)
+                })
+            }
+            console.log(data);
      const saveData=async (imageUrl)=>{
         try{
             let data={
-                breedName,
+                petname,
                 description,
+                age,
                 type,
+                ngoId:sessionStorage.getItem("userID"),
+                ngoname:sessionStorage.getItem("name"),
+                ngoemail:sessionStorage.getItem("email"),
                 imageUrl,
                 status:true,
                 createdAt:Timestamp.now()
             }
-            await addDoc(collection(db,"breeds"),data)
-            toast.success("Breed added successfully!!")
-            setBreedName("")
+            await addDoc(collection(db,"pets"),data)
+            toast.success("Pet added successfully!!")
+            setPetName("")
             setDescription("")
-            // setBreed("")
+            setAge("")
+            setType("")
             setImage({})
             setImageName("")
-            setType("")
         }
         catch(err){
             toast.error(err.message)
@@ -72,10 +91,10 @@ export default function AddBreeds(){
                         </a>
                         </span>{" "}
                         <span>
-                        Breed <i className="ion-ios-arrow-forward" />
+                        Pets <i className="ion-ios-arrow-forward" />
                         </span>
                     </p>
-                    <h1 className="mb-0 bread">Breed</h1>
+                    <h1 className="mb-0 bread">Add Pets</h1>
                     </div>
                 </div>
                 </div>
@@ -84,7 +103,7 @@ export default function AddBreeds(){
                 <div className="row justify-content-center no-gutters">
                 <div className="col-md-7" style={{boxShadow:"0px 0px 10px gray"}}>
                     <div className="contact-wrap w-100 p-md-5 p-4">
-                    <h3 className="mb-4">Add Breed</h3>
+                    <h3 className="mb-4">Add Pets</h3>
                     <form
                         method="POST"
                         id="contactForm"
@@ -96,18 +115,18 @@ export default function AddBreeds(){
                         
                         <div className="col-md-12">
                             <div className="form-group">
-                            <label className="label" htmlFor="breedName">
-                                Breed Name
+                            <label className="label" htmlFor="petname">
+                                Pet Name
                             </label>
                             <input
                                 type="text"
                                 className="form-control"
-                                name="breedName"
-                                id="breedName"
-                                placeholder="Breed Name"
-                                value={breedName}
+                                name="petname"
+                                id="petname"
+                                placeholder="Pet Name"
+                                value={petname}
                                 onChange={(e)=>{
-                                    setBreedName(e.target.value)
+                                    setPetName(e.target.value)
                                 }}
                             />
                             </div>
@@ -130,12 +149,19 @@ export default function AddBreeds(){
                             />
                             </div>
                         </div>
-                         <div className="col-md-12">
+                        <div className="col-md-12">
                             <div className="form-group">
-                            <label className="label" htmlFor="text">
-                                Type
+                            <label className="label" htmlFor="breed">
+                                Choose Breed
                             </label>
-                            <select
+
+                            <select className="form-control">
+                            <option>Choose Breed</option>
+                            {data?.map((el,index)=>(
+                                <option value={el.id}>{el.breedName}</option>
+                            ))}
+                        </select>
+                            {/* <select
                                 className="form-control"
                                value={type}
                                onChange={(e)=>{
@@ -145,7 +171,26 @@ export default function AddBreeds(){
                                 <option selected disabled value={""}>Choose one</option>
                                 <option>Dog</option>
                                 <option>Cat</option>
-                            </select>
+                            </select> */}
+                            </div>
+                        </div>
+                         <div className="col-md-12">
+                            <div className="form-group">
+                            <label className="label" htmlFor="age">
+                                Age
+                            </label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                name="age"
+                                id="age"
+                                placeholder="Age"
+                                min={1}
+                                value={age}
+                                onChange={(e)=>{
+                                    setAge(e.target.value)
+                                }}
+                            />
                             </div>
                         </div>
                         <div className="col-md-12">
