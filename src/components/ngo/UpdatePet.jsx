@@ -1,8 +1,9 @@
-import { addDoc, collection, onSnapshot, query, Timestamp } from "firebase/firestore"
+import { addDoc, collection, doc, getDoc, onSnapshot, query, Timestamp, updateDoc } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import axios from "axios"
 import { db } from "../Firebase"
+import { useNavigate, useParams } from "react-router-dom"
 export default function UpdatePet(){
     const [petname, setPetName]=useState("")
     const [description, setDescription]=useState("")
@@ -11,20 +12,38 @@ export default function UpdatePet(){
     const [image, setImage]=useState({})
     const [imageName, setImageName]=useState("")
     const [data, setData]=useState([])
-            useEffect(()=>{
-                fetchData()
-            },[])
-            const fetchData=()=>{
-                let q=query(collection(db,"breeds")
-            )
-                onSnapshot(q,(breedsCol)=>{
-                    let breedsData=breedsCol.docs.map((el)=>{
-                       return {...el.data(), id:el.id}
-                    })
-                    setData(breedsData)
-                })
+    const [previousimage, setpreviousimage]=useState("")
+
+    let nav = useNavigate()
+
+    let {id} = useParams()
+    console.log("params is",id)
+
+    const fetchData=async()=>{
+        let petDoc =await getDoc(doc(db,"pets",id))
+        let petData = petDoc.data()
+        console.log("petData",petData);
+        setPetName(petData.petname)
+        setDescription(petData.description)
+        setType(petData.type)
+        setpreviousimage(petData.imageUrl)
+        setAge(petData.age)
+    }
+            const fetchBreeds = () => {
+            const q = query(collection(db, "breeds"));
+            onSnapshot(q, (snapshot) => {
+                let breeds = snapshot.docs.map((el) => ({
+                ...el.data(),
+                id: el.id
+                }))
+                setData(breeds)
+            })
             }
-            console.log(data);
+                useEffect(() => {
+                fetchData()      // fetch current pet info
+                fetchBreeds()    // fetch breeds list
+                }, [])
+
      const saveData=async (imageUrl)=>{
         try{
             let data={
@@ -39,14 +58,12 @@ export default function UpdatePet(){
                 status:true,
                 createdAt:Timestamp.now()
             }
-            await addDoc(collection(db,"pets"),data)
-            toast.success("Pet added successfully!!")
-            setPetName("")
-            setDescription("")
-            setAge("")
-            setType("")
-            setImage({})
-            setImageName("")
+            await updateDoc(doc(db,"pets",id),data)
+            toast.success("Pet updated successfully!!")
+             setpreviousimage(imageUrl)
+            setTimeout(()=>{
+                nav("/admin/manageBreeds")
+            },2000)
         }
         catch(err){
             toast.error(err.message)
@@ -54,6 +71,7 @@ export default function UpdatePet(){
     }
     const handleForm=async (e)=>{
         e.preventDefault()
+        if(!!imageName){
         let formData=new FormData()
         formData.append("file", image)
         formData.append("upload_preset","BreedsImages")
@@ -66,6 +84,10 @@ export default function UpdatePet(){
         }
         catch(err){
             toast.error(err.message)
+        }
+    }
+        else{
+            saveData(previousimage);
         }
     }
     const changeImage=(e)=>{
@@ -86,7 +108,7 @@ export default function UpdatePet(){
                     <div className="col-md-9 ftco-animate pb-5">
                     <p className="breadcrumbs mb-2">
                         <span className="mr-2">
-                        <a href="index.html">
+                        <a href="/ngo">
                             Home <i className="ion-ios-arrow-forward" />
                         </a>
                         </span>{" "}
@@ -94,7 +116,7 @@ export default function UpdatePet(){
                         Pets <i className="ion-ios-arrow-forward" />
                         </span>
                     </p>
-                    <h1 className="mb-0 bread">Add Pets</h1>
+                    <h1 className="mb-0 bread">Update Pets</h1>
                     </div>
                 </div>
                 </div>
@@ -103,7 +125,8 @@ export default function UpdatePet(){
                 <div className="row justify-content-center no-gutters">
                 <div className="col-md-7" style={{boxShadow:"0px 0px 10px gray"}}>
                     <div className="contact-wrap w-100 p-md-5 p-4">
-                    <h3 className="mb-4">Add Pets</h3>
+                    <h3 className="mb-4">Update Pets</h3>
+                    <img src={previousimage} height={"100px"} width={"100px"} alt="" />
                     <form
                         method="POST"
                         id="contactForm"
@@ -154,11 +177,15 @@ export default function UpdatePet(){
                             <label className="label" htmlFor="breed">
                                 Choose Breed
                             </label>
-
-                            <select className="form-control">
+                            <select className="form-control"
+                                value={type}
+                               onChange={(e)=>{
+                                setType(e.target.value)
+                               }}
+                               >
                             <option>Choose Breed</option>
                             {data?.map((el,index)=>(
-                                <option value={el.id}>{el.breedName}</option>
+                                <option key={el.id} value={el.breedName}>{el.breedName}</option>
                             ))}
                         </select>
                             {/* <select

@@ -155,10 +155,15 @@ export default function AddPet(){
                                 Choose Breed
                             </label>
 
-                            <select className="form-control">
+                            <select className="form-control"
+                                value={type}
+                               onChange={(e)=>{
+                                setType(e.target.value)
+                               }}
+                               >
                             <option>Choose Breed</option>
                             {data?.map((el,index)=>(
-                                <option value={el.id}>{el.breedName}</option>
+                                <option value={el.breedName}>{el.breedName}</option>
                             ))}
                         </select>
                             {/* <select

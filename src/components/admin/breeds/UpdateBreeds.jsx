@@ -1,10 +1,9 @@
-import { addDoc, collection, doc, getDoc, Timestamp } from "firebase/firestore"
+import { addDoc, collection, doc, getDoc, Timestamp, updateDoc } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../../Firebase"
 import { toast } from "react-toastify"
 import axios from "axios"
-import { Link, useParams } from "react-router-dom"
-
+import { Link, useNavigate, useParams } from "react-router-dom"
 export default function UpdateBreed(){
     const [breedName, setBreedName]=useState("")
     const [description, setDescription]=useState("")
@@ -12,6 +11,8 @@ export default function UpdateBreed(){
     const [image, setImage]=useState({})
     const [imageName, setImageName]=useState("")
     const [type, setType]=useState("")
+
+    let nav = useNavigate()
 
     
     const [previousimage, setpreviousimage]=useState("")
@@ -33,9 +34,10 @@ export default function UpdateBreed(){
     
     const handleForm=async (e)=>{
         e.preventDefault()
+        if(!!imageName){
         let formData=new FormData()
         formData.append("file", image)
-        formData.append("upload_preset","breedImages")
+        formData.append("upload_preset","BreedsImages")
         try{
             const response = await axios.post(
                 `https://api.cloudinary.com/v1_1/dgnkp6a25/image/upload`,
@@ -47,7 +49,11 @@ export default function UpdateBreed(){
         catch(err){
             toast.error(err.message)
         }
+    }else{
+            saveData(previousimage);
+        }
     }
+   
     const changeImage=(e)=>{
         setImageName(e.target.value)
         setImage(e.target.files[0]);
@@ -63,13 +69,12 @@ export default function UpdateBreed(){
                 status:true,
                 createdAt:Timestamp.now()
             }
-            await addDoc(collection(db,"breeds"),data)
-            toast.success("Breed added successfully!!")
-            setBreedName("")
-            setDescription("")
-            setType("")
-            setImage({})
-            setImageName("")
+            await updateDoc(doc(db,"breeds",id),data)
+            toast.success("Breed updated successfully!!")
+            setpreviousimage(imageUrl)
+            setTimeout(()=>{
+                nav("/admin/manageBreeds")
+            },2000)
         }
         catch(err){
             toast.error(err.message)

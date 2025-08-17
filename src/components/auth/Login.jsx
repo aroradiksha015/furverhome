@@ -161,6 +161,7 @@ export default function Login(){
                         </form>
                     <button onClick={googleSignUp} className="btn btn-danger"><i className="fa fa-google"></i> Sign in with Google</button>
                         <div>Don't have an Account? <Link to={"/register"}>Register Here!!</Link></div>
+                        <div>Register As an NGO <Link to={"/registerNGO"}>Register Here!!</Link></div>
                         </div>
                     </div>
                     <div className="col-md-5 d-flex align-items-stretch">
