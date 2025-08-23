@@ -9,10 +9,9 @@ export default function ManageNGO(){
                 fetchData()
             },[])
             const fetchData=()=>{
-                let q=query(collection(db,"users"),where("userType","==",2));
+                let q=query(collection(db,"users"),where("usertype","==",2));
                 onSnapshot(q, (ngoCol)=>{
                     let ngoData=ngoCol.docs.map((el)=>{
-                    
                        return {...el.data(), id:el.id}
                     })
                     setData(ngoData)
@@ -97,7 +96,7 @@ export default function ManageNGO(){
                                         <td>{el?.contact}</td>
                                         <td>{el?.address}</td>
                                         <td>
-                                            
+                                       <Link className="btn btn-success" to={"/admin/updateNGO/"+el.id}>Edit</Link>  
                                         <Link className="btn btn-danger" onClick={()=>{deletengo(el.id)}}>Delete</Link>
                                         </td>
                                     </tr>

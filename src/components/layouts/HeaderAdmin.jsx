@@ -130,7 +130,7 @@ export default function HeaderAdmin(){
         </li>
          
           <li className="nav-item">
-            <Link to="/users" className="nav-link">
+            <Link to="/admin/users" className="nav-link">
               Users
             </Link>
           </li>

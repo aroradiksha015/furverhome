@@ -24,6 +24,9 @@ import AddNGO from './components/admin/ngos/AddNGO';
 import ManageNGO from './components/admin/ngos/ManageNGO';
 import UpdateBreed from './components/admin/breeds/UpdateBreeds';
 import UpdatePet from './components/ngo/UpdatePet';
+import UpdateNGO from './components/admin/ngos/UpdateNGO';
+import { ManageUsers } from './components/admin/users/ManageUsers';
+import { UpdateUsers } from './components/admin/users/UpdateUsers';
 function App() {
   return (
     <>
@@ -45,12 +48,15 @@ function App() {
 
       {/* {admin} */}
       <Route path="/admin" element={<MasterAdmin/>}>
+      <Route path = "users" element ={<ManageUsers/>}></Route>
       <Route path="addBreeds" element={<AddBreeds/>}></Route>
       <Route path="manageBreeds" element={<ManageBreeds/>}></Route>
       <Route path="addNGO" element={<AddNGO/>}></Route>
       <Route path="manageNGO" element={<ManageNGO/>}></Route>
       <Route path="managePet"element={<ManagePet/>}></Route>
       <Route path="updateBreed/:id"element={<UpdateBreed/>}></Route>
+      <Route path = "updateNGO/:id" element={<UpdateNGO/>}></Route>
+      <Route path = "updateUsers/:id" element={<UpdateUsers/>}></Route>
 
       </Route>
 
