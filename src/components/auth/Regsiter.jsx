@@ -176,7 +176,9 @@ export default function Register(){
                     className="info-wrap w-100 p-5 img"
                     style={{ backgroundImage: "url(/assets/images/img.jpg)" }}
                     ></div>
+                    
                 </div>
+                
                 </div>
             </div>
         </>

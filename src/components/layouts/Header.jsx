@@ -109,11 +109,11 @@ export default function Header(){
               Home
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link to="/about" className="nav-link">
               About
             </Link>
-          </li>
+          </li> */}
           <li className="nav-item">
             <Link to="/ViewBreeds" className="nav-link">
               Breeds
@@ -137,12 +137,28 @@ export default function Header(){
             <Link to="#" className="dropdown-item">Add Adoption Request</Link>
             <Link to="#" className="dropdown-item">Track Request</Link>
           </div>
+          
            </li>
-            <li className="nav-item">
+           <li className="nav-item">
+            <Link to="/contact" className="nav-link">
+              Contact
+            </Link>
+          </li>
+           <li className="nav-item dropdown">
+          <a className="dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Register
+          </a>
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <Link to="/register" className="dropdown-item"> Register as a User</Link>
+            <Link to="/registerNGO" className="dropdown-item">Register As an NGO</Link>
+          </div>
+          
+           </li>
+            {/* <li className="nav-item">
             <Link to="/register" className="nav-link">
               Register
             </Link> 
-          </li>
+          </li> */}
           {
             //condition?true:false
           isLogin?
@@ -158,6 +174,7 @@ export default function Header(){
             </Link>
           </li>
           }
+
         </ul>
       </div>
     </div>

@@ -43,7 +43,7 @@ export default function footer(){
             </li>
           </ul>
         </div>
-        <div className="col-md-6 col-lg-3 mb-4 mb-md-0">
+        {/* <div className="col-md-6 col-lg-3 mb-4 mb-md-0">
           <h2 className="footer-heading">Latest News</h2>
           <div className="block-21 mb-4 d-flex">
             <a
@@ -105,7 +105,7 @@ export default function footer(){
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
           <h2 className="footer-heading">Quick Links</h2>
           <ul className="list-unstyled">
@@ -115,25 +115,25 @@ export default function footer(){
               </Link>
             </li>
             <li>
-              <Link to="/about" className="py-2 d-block">
-                About
+              <Link to="/viewPets" className="py-2 d-block">
+                Pets
               </Link>
             </li>
-            {/* <li>
-              <a href="#" className="py-2 d-block">
-                Services
-              </a>
-            </li> */}
-            {/* <li>
-              <a href="#" className="py-2 d-block">
-                Works
-              </a>
-            </li> */}
             <li>
+              <a href="/viewBreeds" className="py-2 d-block">
+               Breeds
+              </a>
+            </li>
+            <li>
+              <a href="/ViewNGO" className="py-2 d-block">
+                NGO
+              </a>
+            </li>
+            {/* <li>
               <Link to="/blog" className="py-2 d-block">
                 Blog
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link to="/contact" className="py-2 d-block">
                 Contact
@@ -141,6 +141,7 @@ export default function footer(){
             </li>
           </ul>
         </div>
+        
         <div className="col-md-6 col-lg-3 mb-4 mb-md-0">
           <h2 className="footer-heading">Have a Questions?</h2>
           <div className="block-23 mb-3">

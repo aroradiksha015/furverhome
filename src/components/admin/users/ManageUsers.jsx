@@ -61,25 +61,16 @@ export function ManageUsers(){
                                 </a>
                                 </span>{" "}
                                 <span>
-                                NGO <i className="ion-ios-arrow-forward" />
+                                Users<i className="ion-ios-arrow-forward" />
                                 </span>
                             </p>
-                            <h1 className="mb-0 bread">Breed</h1>
+                            <h1 className="mb-0 bread">Users</h1>
                             </div>
                         </div>
                         </div>
                     </section>
-    {/* <div className="page-title" data-aos="fade">
-      <div className="heading">
-        <div className="container">
-          <div >
-            <div className="col-lg-2">
-              
-            </div>                                             
-          </div>
-        </div>
-      </div>
-    </div> */}
+
+  
     <div>
       <h1 className="text-dark pt-5 mt-4 row d-flex justify-content-center text-center" >Manage Users</h1>
     </div>

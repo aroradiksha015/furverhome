@@ -30,7 +30,7 @@ export default function Contact(){
             <div className="container">
               <div className="row justify-content-center">
                 <div className="col-md-6 text-center mb-5">
-                  <h2 className="heading-section">Contact Form #03</h2>
+                  <h2 className="heading-section">Contact Form</h2>
                 </div>
               </div>
               <div className="row justify-content-center">
@@ -184,7 +184,7 @@ export default function Contact(){
               </div>
             </div>
           </section>
-         <div id="map" className="map" />
+         {/* <div id="map" className="map" /> */}
         </>
     )
 }

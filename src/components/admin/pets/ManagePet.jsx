@@ -101,7 +101,12 @@ export default function ManagePet(){
                         </div>
                          
                     </div>
+                    <div class="d-flex justify-content-center">
+                 
+                  
+                  <Link className="btn btn-success" to={"/admin/UpdatePets/"+el?.id}>Edit</Link>
                     <Link className="btn btn-danger" onClick={()=>{deletepet(el.id)}}>Delete</Link>
+                    </div>
                     </div>
                     ))}
                    

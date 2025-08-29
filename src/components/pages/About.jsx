@@ -332,7 +332,7 @@ export default function About(){
               </div>
             </div>
           </section>
-          <section
+          {/* <section
             className="ftco-section testimony-section"
             style={{ backgroundImage: 'url("/assets/images/bg_2.jpg")' }}
           >
@@ -470,7 +470,7 @@ export default function About(){
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
           <section
             className="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img"
             style={{ backgroundImage: "url(/assets/images/bg_3.jpg)" }}

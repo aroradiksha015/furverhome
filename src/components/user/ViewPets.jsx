@@ -72,12 +72,20 @@ export default function ViewPets(){
                             </h2>
                         </div>
                         </div>
+                        
                     </div>
+                    <div class="d-flex justify-content-center">
+                  <button type="button" class="btn btn-primary">Adopt</button>
+                  </div>
+
+                    
                     </div>
                     ))}
                    
                 </div>
                 </div>
+
+                
             </section>
         </>
     )

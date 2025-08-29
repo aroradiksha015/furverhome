@@ -45,87 +45,125 @@ export function UpdateUsers(){
 
   return(
     <>
-    <main className="main">
-          {/* Page Title */}
-          <div className="page-title" data-aos="fade" style={{background:"url('/assets/img/hero-carousel/hero-carousel-1.jpg')",height:"450px"}}>
-            <div className="heading">
-              <div className="container" style={{boxShadow:"0px 0px 10px gray"}}>
-                <div className="row d-flex justify-content-center text-center">
-                  <div className="col-lg-2">
-                    <h1 className="text-dark pt-5 mt-4" >Update Users</h1>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-6 border border-black-700 p-2 m-5 mx-auto">
-              <form
-                action="forms/contact.php"
-                method="post"
-                className="php-email-form"
-                data-aos="fade-up"
-                data-aos-delay={200}
-                onSubmit={handleForm}
-              >
-                <div className="row gy-4">
-                  <div className="col-md-6 mt-5 ms-2">
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="Name"
-                      placeholder="Name"
-                      required=""
-                      value={name}
-                      onChange={(e)=>{
-                        setName(e.target.value)
-                      }}
-                    />
-                  </div>
-                  <div className="col-md-6 mt-5 ms-2">
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="Email"
-                      placeholder="Email"
-                      required=""
-                      value={email}
-                      onChange={(e)=>{
-                        setEmail(e.target.value)
-                      }}
-                    />
-                  </div>
-                  <div className="col-md-6 mt-5 ms-2">
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="Contact"
-                      placeholder="Contact"
-                      minLength={10}
-                      maxLength={10}
-                      required=""
-                      value={contact}
-                      onChange={(e)=>{
-                        setContact(e.target.value)
-                      }}
-                    />
-                  </div>
-                  <div className="col-md-12 mx-2">
-                    <div className="loading">Loading</div>
-                    <div className="error-message" />
-                    <div className="sent-message">
-                      Your message has been sent. Thank you!
+
+      <section
+                            className="hero-wrap hero-wrap-2"
+                            style={{ backgroundImage: 'url("/assets/images/bg_2.jpg")' }}
+                            data-stellar-background-ratio="0.5"
+                        >
+                        <div className="overlay" />
+                        <div className="container">
+                        <div className="row no-gutters slider-text align-items-end">
+                            <div className="col-md-9 ftco-animate pb-5">
+                            <p className="breadcrumbs mb-2">
+                                <span className="mr-2">
+                                <a href="/admin">
+                                    Home <i className="ion-ios-arrow-forward" />
+                                </a>
+                                </span>{" "}
+                                <span>
+                                NGO <i className="ion-ios-arrow-forward" />
+                                </span>
+                            </p>
+                            <h1 className="mb-0 bread">Breed</h1>
+                            </div>
+                        </div>
+                        </div>
+                    </section>
+
+           <div className="container my-5">
+                <div className="row justify-content-center no-gutters">
+                <div className="col-md-7" style={{boxShadow:"0px 0px 10px gray"}}>
+                    <div className="contact-wrap w-100 p-md-5 p-4">
+                    <h3 className="mb-4">Update Users</h3>
+                    <form
+                        method="POST"
+                        id="contactForm"
+                        name="contactForm"
+                        className="contactForm"
+                        onSubmit={handleForm}
+                        
+                    >
+                        <div className="row">
+                        
+                        <div className="col-md-12">
+                            <div className="form-group">
+                            <label className="label" htmlFor="name">
+                                Name
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="name"
+                                id="name"
+                                placeholder="Name"
+                                value={name}
+                                onChange={(e)=>{
+                                    setName(e.target.value)
+                                }}
+                            />
+                            </div>
+                        </div>
+                        <div className="col-md-12">
+                            <div className="form-group">
+                            <label className="label" htmlFor="email">
+                               Email
+                            </label>
+                            <input
+                                type="email"
+                                className="form-control"
+                                name="email"
+                                id="email"
+                                placeholder="Email"
+                                disabled
+                               value={email}
+                               onChange={(e)=>{
+                                setEmail(e.target.value)
+                               }}
+                            />
+                            </div>
+                        </div>
+                        <div className="col-md-12">
+                            <div className="form-group">
+                            <label className="label" htmlFor="contact">
+                                Contact
+                            </label>
+                            <input
+                                type="tel"
+                                className="form-control"
+                                name="contact"
+                                id="contact"
+                                placeholder="Contact"
+                                minLength={10}
+                                maxLength={10}
+                                value={contact}
+                                onChange={(e)=>{
+                                    setContact(e.target.value)
+                                    }}
+                            />
+                            </div>
+                        </div>
+                        <div className="col-md-12">
+                            <div className="form-group">
+                            <input
+                                type="submit"
+                                defaultValue="Submit"
+                                className="btn btn-primary"
+                            />
+                            <div className="submitting" />
+                            </div>
+                        </div>
+                        </div>
+                    </form>
                     </div>
-                    <button className="btn btn-dark" type="submit">SUBMIT</button>
-                  </div>
+                    
                 </div>
-              </form>
+                
+                </div>
             </div>
-            </div>
-          </div>
-        </main>   
+        
+
+
     </>
   )
 }

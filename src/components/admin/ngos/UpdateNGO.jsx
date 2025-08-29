@@ -134,6 +134,7 @@ export default function UpdateNGO(){
                                 name="email"
                                 id="email"
                                 placeholder="Email"
+                                disabled
                                value={email}
                                onChange={(e)=>{
                                 setEmail(e.target.value)

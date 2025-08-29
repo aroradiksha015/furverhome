@@ -27,6 +27,7 @@ import UpdatePet from './components/ngo/UpdatePet';
 import UpdateNGO from './components/admin/ngos/UpdateNGO';
 import { ManageUsers } from './components/admin/users/ManageUsers';
 import { UpdateUsers } from './components/admin/users/UpdateUsers';
+import UpdatePets from './components/admin/pets/UpdatePets';
 function App() {
   return (
     <>
@@ -34,7 +35,7 @@ function App() {
       <Routes>
       <Route path="/" element={<Master/>}>
       <Route index element={<Home/>}></Route>
-      <Route path="about" element = {<About/>}></Route>
+      {/* <Route path="about" element = {<About/>}></Route> */}
 
       <Route path="contact" element={<Contact/>}></Route>
       <Route path="login" element={<Login/>}></Route>
@@ -57,6 +58,8 @@ function App() {
       <Route path="updateBreed/:id"element={<UpdateBreed/>}></Route>
       <Route path = "updateNGO/:id" element={<UpdateNGO/>}></Route>
       <Route path = "updateUsers/:id" element={<UpdateUsers/>}></Route>
+      <Route path = "updatePets/:id" element={<UpdatePets/>}></Route>
+
 
       </Route>
 

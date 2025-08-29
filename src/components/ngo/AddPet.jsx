@@ -86,7 +86,7 @@ export default function AddPet(){
                     <div className="col-md-9 ftco-animate pb-5">
                     <p className="breadcrumbs mb-2">
                         <span className="mr-2">
-                        <a href="index.html">
+                        <a href="/ngo">
                             Home <i className="ion-ios-arrow-forward" />
                         </a>
                         </span>{" "}

@@ -8,8 +8,7 @@ export default function ViewNG0(){
                 fetchData()
             },[])
             const fetchData=()=>{
-                let q=query(collection(db,"ngo")
-            )
+                let q=query(collection(db,"users"),where("usertype","==",2));
                 onSnapshot(q, (ngoCol)=>{
                     let ngoData=ngoCol.docs.map((el)=>{
                        return {...el.data(), id:el.id}
@@ -31,7 +30,7 @@ export default function ViewNG0(){
                             <div className="col-md-9 ftco-animate pb-5">
                             <p className="breadcrumbs mb-2">
                                 <span className="mr-2">
-                                <a href="/admin">
+                                <a href="/">
                                     Home <i className="ion-ios-arrow-forward" />
                                 </a>
                                 </span>{" "}
