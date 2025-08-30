@@ -1,7 +1,4 @@
 import Master from './components/layouts/Master';
-import About from './components/pages/About';
-import Blog  from './components/pages/Blog';
-import  Blogsingle from './components/pages/Blogsingle';
 import Contact from './components/pages/Contact';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/pages/Home';
@@ -28,6 +25,10 @@ import UpdateNGO from './components/admin/ngos/UpdateNGO';
 import { ManageUsers } from './components/admin/users/ManageUsers';
 import { UpdateUsers } from './components/admin/users/UpdateUsers';
 import UpdatePets from './components/admin/pets/UpdatePets';
+import AdoptionRequest from './components/user/adoptionRequest';
+import Petdetails from './components/user/PetDetails';
+import ViewQueries from './components/admin/queries/ViewQueries';
+import ViewRequests from './components/admin/requests/ViewRequests';
 function App() {
   return (
     <>
@@ -44,6 +45,8 @@ function App() {
       <Route path="viewBreeds" element={<ViewBreeds/>}></Route>
       <Route path="viewPets" element={<ViewPets/>}></Route>
       <Route path="viewNGO" element = {<ViewNG0/>}></Route>
+      <Route path="petDetails/:id" element={<Petdetails/>}></Route>                              
+      <Route path = "addRequest/:id"  element={<AdoptionRequest/>}></Route>
       </Route>
       <Route path="*" element={<Error/>}></Route>
 
@@ -59,6 +62,8 @@ function App() {
       <Route path = "updateNGO/:id" element={<UpdateNGO/>}></Route>
       <Route path = "updateUsers/:id" element={<UpdateUsers/>}></Route>
       <Route path = "updatePets/:id" element={<UpdatePets/>}></Route>
+      <Route path= "viewQueries" element={<ViewQueries/>}></Route>
+      <Route path="viewRequests"element={<ViewRequests/>}></Route>
 
 
       </Route>

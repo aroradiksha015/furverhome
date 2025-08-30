@@ -1,4 +1,51 @@
+import { collection, onSnapshot, query, where } from "firebase/firestore"
+import { useEffect, useState } from "react"
+import { db } from "../Firebase"
+
 export default function Home(){
+  useEffect(()=>{
+          fetchData()
+      },[])
+      const [pets, setPets]=useState([])
+      const [ngo, setNgo]=useState([])
+      const [users, setUsers]=useState([])
+      const [breeds, setBreeds]=useState([])
+          const fetchData=()=>{
+             let q=query(collection(db,"pets"))
+              onSnapshot(q,(petsCol)=>{
+                  let petsData=petsCol.docs.map((el)=>{
+                  return{...el.data(),id: el.id};   
+                  })
+                  setPets(petsData)
+              })
+             let ngoq=query(collection(db,"users"),where("userType","==",2));
+             onSnapshot(ngoq,(ngoCol)=>{
+                  let ngoData=ngoCol.docs.map((el)=>{
+                      return{...el.data(),id: el.id}; 
+                  })
+                    setNgo(ngoData)
+                })
+              let usersq=query(collection(db,"users"),where("userType","==",3));
+             onSnapshot(usersq,(usersCol)=>{
+                  let userData=usersCol.docs.map((el)=>{
+                      return{...el.data(),id: el.id}; 
+                  })
+                    setUsers(userData)
+                })
+              let breedsq=query(collection(db,"breeds"));
+             onSnapshot(breedsq,(breedsCol)=>{
+                  let breedsData=breedsCol.docs.map((el)=>{
+                      return{...el.data(),id: el.id}; 
+                  })
+                    setBreeds(breedsData)
+                })
+              }
+
+            console.log("length of ngo:",ngo.length);
+            console.log("length of pets:",pets.length);
+            console.log("length of breeds:",breeds.length);
+            console.log("length of users:",users.length);
+
     return(
         <>
           <div
@@ -160,7 +207,7 @@ export default function Home(){
                   <div className="block-18 text-center">
                     <div className="text">
                       <strong className="number" data-number={50}>
-                        0
+                        {users.length>0?users.length:"0"}
                       </strong>
                     </div>
                     <div className="text">
@@ -172,11 +219,11 @@ export default function Home(){
                   <div className="block-18 text-center">
                     <div className="text">
                       <strong className="number" data-number={8500}>
-                        0
+                        {ngo.length>0?ngo.length:"0"}
                       </strong>
                     </div>
                     <div className="text">
-                      <span>Professionals</span>
+                      <span>NGO</span>
                     </div>
                   </div>
                 </div>
@@ -184,11 +231,11 @@ export default function Home(){
                   <div className="block-18 text-center">
                     <div className="text">
                       <strong className="number" data-number={20}>
-                        0
+                        {pets.length>0?pets.length:"0"}
                       </strong>
                     </div>
                     <div className="text">
-                      <span>Products</span>
+                      <span>Pets</span>
                     </div>
                   </div>
                 </div>
@@ -196,11 +243,11 @@ export default function Home(){
                   <div className="block-18 text-center">
                     <div className="text">
                       <strong className="number" data-number={50}>
-                        0
+                        {breeds.length>0?breeds.length:"0"}
                       </strong>
                     </div>
                     <div className="text">
-                      <span>Pets Hosted</span>
+                      <span>Breeds</span>
                     </div>
                   </div>
                 </div>

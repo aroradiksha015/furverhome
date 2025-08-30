@@ -1,5 +1,45 @@
+import { Timestamp, addDoc, collection } from "firebase/firestore";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { db } from "../Firebase";
 export default function Contact(){
+        const [name, setName]=useState("")
+        const [email, setEmail]=useState("")
+        const [subject, setSubject]=useState("") 
+        const [message, setMessage]=useState("")
+        const saveData=async()=>{
+                try{
+                    let data={
+                        name,
+                        email,
+                        subject,
+                        message,
+                        userId:sessionStorage.getItem("userID"),
+                        status:true,
+                        createdAt:Timestamp.now()
+                    }
+                    console.log(data);
+                    await addDoc(collection(db,"contact"),data)
+                    toast.success("Query added successfully!!")
+                    setName("")
+                    setEmail("")
+                    setSubject("")
+                    setMessage("")
+                }
+                catch(err){
+                    toast.error(err.message)
+                }
+            }
+   const handleForm=async(e)=>{
+        e.preventDefault() 
+        try{
+        saveData();
+        }
+        catch(err){
+            toast.error(err.message)
+        }
+    }
     return(
         <>    
           <section
@@ -98,6 +138,7 @@ export default function Contact(){
                             id="contactForm"
                             name="contactForm"
                             className="contactForm"
+                            onSubmit={handleForm}
                           >
                             <div className="row">
                               <div className="col-md-6">
@@ -111,6 +152,10 @@ export default function Contact(){
                                     name="name"
                                     id="name"
                                     placeholder="Name"
+                                    value={name}
+                                onChange={(e)=>{
+                                    setName(e.target.value)
+                                }}
                                   />
                                 </div>
                               </div>
@@ -125,6 +170,10 @@ export default function Contact(){
                                     name="email"
                                     id="email"
                                     placeholder="Email"
+                                    value={email}
+                                onChange={(e)=>{
+                                    setEmail(e.target.value)
+                                }}
                                   />
                                 </div>
                               </div>
@@ -139,6 +188,10 @@ export default function Contact(){
                                     name="subject"
                                     id="subject"
                                     placeholder="Subject"
+                                    value={subject}
+                                onChange={(e)=>{
+                                    setSubject(e.target.value)
+                                }}
                                   />
                                 </div>
                               </div>
@@ -155,6 +208,10 @@ export default function Contact(){
                                     rows={4}
                                     placeholder="Message"
                                     defaultValue={""}
+                                    value={message}
+                                onChange={(e)=>{
+                                    setMessage(e.target.value)
+                                }}
                                   />
                                 </div>
                               </div>

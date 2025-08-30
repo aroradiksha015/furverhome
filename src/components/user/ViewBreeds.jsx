@@ -16,6 +16,7 @@ export default function ViewBreeds(){
                 
             })
             setData(breedData)
+            console.log(breedData)
         })
     }
     return(
@@ -51,17 +52,13 @@ export default function ViewBreeds(){
                     <h2>Breed Gallery</h2>
                     </div>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     {data?.map((el,index)=>(
                     <div className="col-md-4 ftco-animate">
                     <div
                         className="work mb-4 img d-flex align-items-end"
                         style={{ backgroundImage: `url(${el?.imageUrl})` }}
                     >
-                        <a
-                        href="/assets/images/gallery-1.jpg"
-                        className="icon image-popup d-flex justify-content-center align-items-center"
-                        >
                         <span className="fa fa-expand" />
                         </a>
                         <div className="desc w-100 px-4">
@@ -73,10 +70,28 @@ export default function ViewBreeds(){
                         </div>
                         </div>
                     </div>
-                    </div>
-                    ))}
+                    </div> */}
+                    {/* ))} */}
+
+                    <div className="row">
+  {data?.map((el, index) => (
+    <div className="col-md-4 mb-4" key={el.id}>
+      <div className="card shadow" style={{ width: "100%" }}>
+        <img
+          className="card-img-top"
+          src={el?.imageUrl || "https://via.placeholder.com/300x200"}
+          alt={el?.petname || "Pet"}
+          style={{ height: "250px", objectFit: "cover" }}
+        />
+        <div className="card-body text-center">
+          <h5 className="card-title">{el?.breedName}</h5>
+          <p className="card-text text-muted">{el?.type}</p>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
                    
-                </div>
                 </div>
             </section>
         </>

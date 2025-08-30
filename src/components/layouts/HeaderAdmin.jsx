@@ -135,13 +135,18 @@ export default function HeaderAdmin(){
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="requests" className="nav-link">
+            <Link to="/admin/viewRequests" className="nav-link">
               Requests
             </Link>
             </li>
             <li className="nav-item">
             <Link to="/admin/managePet" className="nav-link">
              Pets
+            </Link> 
+          </li>
+          <li className="nav-item">
+            <Link to="/admin/viewQueries" className="nav-link">
+             Queries
             </Link> 
           </li>
           {

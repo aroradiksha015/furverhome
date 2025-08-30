@@ -109,11 +109,6 @@ export default function Header(){
               Home
             </Link>
           </li>
-          {/* <li className="nav-item">
-            <Link to="/about" className="nav-link">
-              About
-            </Link>
-          </li> */}
           <li className="nav-item">
             <Link to="/ViewBreeds" className="nav-link">
               Breeds
@@ -134,7 +129,7 @@ export default function Header(){
             Adoption
           </a>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <Link to="#" className="dropdown-item">Add Adoption Request</Link>
+            <Link to="/viewPets" className="dropdown-item">Add Adoption Request</Link>
             <Link to="#" className="dropdown-item">Track Request</Link>
           </div>
           

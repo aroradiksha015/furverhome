@@ -78,7 +78,7 @@ export default function ManagePet(){
                     <h2>Pets Gallery</h2>
                     </div>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     {data?.map((el,index)=>(
                     <div className="col-md-4 ftco-animate">
                     <div
@@ -110,7 +110,30 @@ export default function ManagePet(){
                     </div>
                     ))}
                    
-                </div>
+                </div> */}
+
+                
+                    <div className="row">
+                    {data?.map((el, index) => (
+                        <div className="col-md-4 mb-4" key={el.id}>
+                        <div className="card shadow" style={{ width: "100%" }}>
+                            <img
+                            className="card-img-top"
+                            src={el?.imageUrl || "https://via.placeholder.com/300x200"}
+                            alt={el?.petname || "Pet"}
+                            style={{ height: "200px", objectFit: "cover" }}
+                            />
+                            <div className="card-body text-center">
+                            <h5 className="card-title">{el?.petname}</h5>
+                            <p className="card-text text-muted">{el?.type}</p>
+                            <Link className="btn btn-success" to={"/admin/UpdatePets/"+el?.id}>Edit</Link> {' '}
+                                        <Link className="btn btn-danger" onClick={()=>{deletepet(el.id)}}>Delete</Link>
+
+                            </div>
+                        </div>
+                        </div>
+                    ))}
+                    </div>
                 </div>
             </section>
         </>

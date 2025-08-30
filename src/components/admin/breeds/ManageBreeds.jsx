@@ -102,7 +102,7 @@ export default function ManageBreeds(){
                                 <td>{el?.description}</td>
                                 <td>{el?.type}</td>
                                 <td>
-                               <Link className="btn btn-success" to={"/admin/updateBreed/"+el.id}>Edit</Link>
+                               <Link className="btn btn-success" to={"/admin/updateBreed/"+el.id}>Edit</Link> {' '}
                                <Link className="btn btn-danger" onClick={()=>{deletebreed(el.id)}}>Delete</Link>
                                 </td>
                             </tr>

@@ -96,7 +96,7 @@ export default function ManageNGO(){
                                         <td>{el?.contact}</td>
                                         <td>{el?.address}</td>
                                         <td>
-                                       <Link className="btn btn-success" to={"/admin/updateNGO/"+el.id}>Edit</Link>  
+                                       <Link className="btn btn-success" to={"/admin/updateNGO/"+el.id}>Edit</Link> {' '} 
                                         <Link className="btn btn-danger" onClick={()=>{deletengo(el.id)}}>Delete</Link>
                                         </td>
                                     </tr>

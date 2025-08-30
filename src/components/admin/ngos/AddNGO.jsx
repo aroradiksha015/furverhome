@@ -20,7 +20,7 @@ export default function AddNGO(){
                         licenseNO,
                         about,
                         address,
-                        usertype:2,
+                        userType:2,
                         status:true,
                         createdAt:Timestamp.now()
                     }

@@ -43,37 +43,37 @@ export default function ViewNG0(){
                         </div>
                         </div>
                     </section>
+
                     <div className="container my-5">
-                        <h1>NGO</h1>
-                        <table className="table table-bordered table-striped table-hover">
-                            <thead className="table-dark">
-                                <tr>
-                                    <th>Sno</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>About</th>
-                                    <th>License Number</th>
-                                    <th>Contact</th>
-                                    <th>Address</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {data?.map((el,index)=>(
-                                    <tr key={index}>
-                                        <td>{index+1}</td>
-                                        <td>{el?.name}</td>
-                                        <td>{el?.email}</td>
-                                        <td>{el?.about}</td>
-                                        <td>{el?.licenseNO}</td>
-                                        <td>{el?.contact}</td>
-                                        <td>{el?.address}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                      
-                    
-                    </div>
+  <h1 className="mb-4 text-center">NGOs</h1>
+  <div className="row">
+    {data?.map((el, index) => (
+      <div className="col-md-4 mb-4" key={index}>
+        <div className="card shadow h-100">
+          <div className="card-body">
+            <h5 className="card-title text-primary text-center">{el?.name}</h5>
+            <p className="card-text">
+              <strong>Email:</strong> {el?.email}
+            </p>
+            <p className="card-text">
+              <strong>About:</strong> {el?.about || "N/A"}
+            </p>
+            <p className="card-text">
+              <strong>License No:</strong> {el?.licenseNO || "N/A"}
+            </p>
+            <p className="card-text">
+              <strong>Contact:</strong> {el?.contact || "N/A"}
+            </p>
+            <p className="card-text">
+              <strong>Address:</strong> {el?.address || "N/A"}
+            </p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
                 </>
             )
         }
