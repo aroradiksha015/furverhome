@@ -145,7 +145,7 @@ export default function Header() {
                   <Link to="/viewPets" className="dropdown-item">
                     Add Adoption Request
                   </Link>
-                  <Link to="#" className="dropdown-item">
+                  <Link to="/trackRequest" className="dropdown-item">
                     Track Request
                   </Link>
                 </div>

@@ -33,6 +33,7 @@ import DashboardAdmin from './components/admin/dashboard/DashboardAdmin';
 
 import DashboardNGO from './components/ngo/dashboard/dashboardNGO';
 import ViewAdoptionRequets from './components/ngo/ViewAdoptionRequests';
+import TrackRequest from './components/user/TrackRequest';
 
 function App() {
   return (
@@ -41,8 +42,6 @@ function App() {
       <Routes>
       <Route path="/" element={<Master/>}>
       <Route index element={<Home/>}></Route>
-      {/* <Route path="about" element = {<About/>}></Route> */}
-
       <Route path="contact" element={<Contact/>}></Route>
       <Route path="login" element={<Login/>}></Route>
       <Route path="register" element={<Register/>}></Route>
@@ -52,7 +51,9 @@ function App() {
       <Route path="viewNGO" element = {<ViewNG0/>}></Route>
       <Route path="petDetails/:id" element={<Petdetails/>}></Route>                              
       <Route path = "addRequest/:id"  element={<AdoptionRequest/>}></Route>
-      </Route>
+    
+      <Route path ="trackRequest" element={<TrackRequest/>}></Route>
+        </Route>
       <Route path="*" element={<Error/>}></Route>
 
       {/* {admin} */}

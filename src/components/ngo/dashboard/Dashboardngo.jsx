@@ -66,14 +66,14 @@ export default function DashboardNGO(){
         <Link to = "/ngo/managePets">
         <div className="card-body">
           <h5 className="card-title fs-4 fw-bold">Pets Hosted</h5>
-          <h2 className="display-4 text-success"> {pets.length>0?pets.length:"0"}</h2>
+          <h2 className="display-4 text-success"> {request.length>0?request.length:"0"}</h2>
         </div>
         </Link>
       </div>
     </div>
 
 
-     {/* <div className="col-md-4 my-2">
+     <div className="col-md-4 my-2">
       <div className="card text-center shadow-lg p-4" style={{ minHeight: "180px" }}>
         <Link to = "/ngo/managePets">
         <div className="card-body">
@@ -82,7 +82,7 @@ export default function DashboardNGO(){
         </div>
         </Link>
       </div>
-    </div> */}
+    </div>
 
 
 
