@@ -92,11 +92,12 @@ export default function AddNGO(){
                         
                         <div className="col-md-12">
                             <div className="form-group">
-                            <label className="label" htmlFor="name">
+                            <label className="label" htmlFor="name" >
                                 Name
                             </label>
                             <input
                                 type="text"
+                                required
                                 className="form-control"
                                 name="name"
                                 id="name"
@@ -115,6 +116,7 @@ export default function AddNGO(){
                             </label>
                             <input
                                 type="email"
+                                required
                                 className="form-control"
                                 name="email"
                                 id="email"
@@ -133,6 +135,7 @@ export default function AddNGO(){
                             </label>
                             <input
                                 type="password"
+                                required
                                 className="form-control"
                                 name="passwprd"
                                 id="password"
@@ -152,6 +155,7 @@ export default function AddNGO(){
                             <input
                                 type="tel"
                                 className="form-control"
+                                required
                                 name="contact"
                                 id="contact"
                                 placeholder="Contact"
@@ -172,6 +176,7 @@ export default function AddNGO(){
                             <input
                                 type="licenseNo"
                                 className="form-control"
+                                required
                                 name="licenseNo"
                                 id="licenseNo"
                                 placeholder="License Number"
@@ -189,6 +194,7 @@ export default function AddNGO(){
                             </label>
                             <input
                                 type="text"
+                                required
                                 className="form-control"
                                 name="text"
                                 id="text"
@@ -209,6 +215,7 @@ export default function AddNGO(){
                             <input
                                 type="text"
                                 className="form-control"
+                                required
                                 name="address"
                                 id="address"
                                 placeholder="Address"

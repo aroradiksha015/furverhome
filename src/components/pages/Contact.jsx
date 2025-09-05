@@ -16,7 +16,7 @@ export default function Contact(){
                         subject,
                         message,
                         userId:sessionStorage.getItem("userID"),
-                        status:true,
+                        status:"pending",
                         createdAt:Timestamp.now()
                     }
                     console.log(data);

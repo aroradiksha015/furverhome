@@ -1,4 +1,4 @@
-import { collection, deleteDoc, doc, onSnapshot, query } from "firebase/firestore"
+import { collection, deleteDoc, doc, onSnapshot, query, updateDoc } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../../Firebase"
 import Swal from "sweetalert2"
@@ -18,22 +18,24 @@ export function ManageUsers(){
       setData(usersData)
     })
   }
-  const deleteUser=async(userId)=>{
+  
+  const changeStatus=async(userId)=>{
         Swal.fire({
         title: "Are you sure?",
-        text: "You won't be able to revert this!",
+        text: "Change the Status of user to false",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
+        confirmButtonText: "Change"
       }).then((result) => {
         if (result.isConfirmed) { 
-           deleteDoc(doc(db,"users",userId))
+           updateDoc(doc(db,"users",userId),{status:false})
+
            .then(()=>{
                Swal.fire({
-                 title: "Deleted!",
-                 text: "Your file has been deleted.",
+                 title: "Status Changed",
+                 text: "The status has been changed.",
                  icon: "success"
                });
            })
@@ -95,20 +97,13 @@ export function ManageUsers(){
               <td>{el?.email}</td>
               <td>{el?.contact}</td>
               <td>
-                <Link className="btn btn-success" to={"/admin/UpdateUsers/"+el?.id}>Edit</Link>{' '}
-                <Link className="btn btn-danger" onClick={()=>{deleteUser(el.id)}}>Delete</Link>
+                <Link className="btn btn-success" onClick={()=>{changeStatus(el.id)}}>{el.status?"Change Status":"Status:false"}</Link>
+
               </td>
             </tr>
           ))}
       </tbody>
       </table>
-     
-      {/* <select>
-        <option>Choose city</option>
-        {data?.map((el,index)=>(
-            <option value={el.id}>{el.cityName}</option>
-        ))}
-      </select> */}
     </div>
     </>
   )

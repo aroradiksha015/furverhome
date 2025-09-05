@@ -3,8 +3,6 @@ import { useEffect, useState } from "react"
 import { db } from "../../Firebase"
 import { Link } from "react-router-dom"
 import Swal from "sweetalert2"
-
-
 export default function ManagePet(){
     useEffect(()=>{
         fetchData()

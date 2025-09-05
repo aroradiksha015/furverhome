@@ -77,7 +77,7 @@ export default function UpdateNGO(){
                     <div className="col-md-9 ftco-animate pb-5">
                     <p className="breadcrumbs mb-2">
                         <span className="mr-2">
-                        <a href="index.html">
+                        <a href="/admin">
                             Home <i className="ion-ios-arrow-forward" />
                         </a>
                         </span>{" "}

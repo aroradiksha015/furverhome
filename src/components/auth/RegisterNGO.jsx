@@ -6,10 +6,13 @@ import { toast } from "react-toastify"
 import { auth, db } from "../Firebase"
 
 export default function RegisterNGO(){
-      const [name, setName]=useState("")
+    const [name, setName]=useState("")
     const [email, setEmail]=useState("")
     const [password, setPassword]=useState("")
     const [contact, setContact]=useState("")
+    const [licenseNO, setLicenseNO]=useState("")
+    const [about, setAbout]=useState("")
+    const [address, setAddress]=useState("")
  let nav = useNavigate()
     const handleForm = (e)=>{
         e.preventDefault()
@@ -29,7 +32,11 @@ export default function RegisterNGO(){
         let data={
             name:name,
             email, 
-            contact, 
+            contact,
+            password,
+            licenseNO,
+            about,
+            address, 
             userType:2,
             status:true, 
             createdAt:Timestamp.now()
@@ -148,6 +155,63 @@ export default function RegisterNGO(){
                                 onChange={(e)=>{
                                     setContact(e.target.value)
                                     }}
+                            />
+                            </div>
+                        </div>
+                        <div className="col-md-12">
+                            <div className="form-group">
+                            <label className="label" htmlFor="licenseNo">
+                               License Number
+                            </label>
+                            <input
+                                type="licenseNo"
+                                className="form-control"
+                                required
+                                name="licenseNo"
+                                id="licenseNo"
+                                placeholder="License Number"
+                               value={licenseNO}
+                               onChange={(e)=>{
+                                setLicenseNO(e.target.value)
+                               }}
+                            />
+                            </div>
+                        </div>
+                        <div className="col-md-12">
+                            <div className="form-group">
+                            <label className="label" htmlFor="text">
+                               About
+                            </label>
+                            <input
+                                type="text"
+                                required
+                                className="form-control"
+                                name="text"
+                                id="text"
+                                placeholder="About"
+                               value={about}
+                               onChange={(e)=>{
+                                setAbout(e.target.value)
+                               }}
+                            />
+                            </div>
+                        </div>
+                        <div className="col-md-12">
+                            <div className="form-group">
+                            <label className="label" htmlFor="address">
+                               Address
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                required
+                                name="address"
+                                id="address"
+                                placeholder="Address"
+                               value={address}
+                               onChange={(e)=>{
+                                setAddress(e.target.value)
+                               }}
                             />
                             </div>
                         </div>

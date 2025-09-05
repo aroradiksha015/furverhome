@@ -14,6 +14,7 @@ export default function Login(){
                     console.log(userData);
                     if(userData?.status==true){
                     sessionStorage.setItem("isLogin", "true")
+                    sessionStorage.setItem("dummy","simran")
                     sessionStorage.setItem("name", userData?.name)
                     sessionStorage.setItem("email", userData?.email)
                     sessionStorage.setItem("userType", userData?.userType)
@@ -32,6 +33,7 @@ export default function Login(){
     } 
     const handleForm=(e)=>{
         e.preventDefault()
+        console.log("AUTH");
          signInWithEmailAndPassword(auth,email,password)
         .then((userCred)=>{
             console.log(userCred.user.uid);
@@ -44,6 +46,8 @@ export default function Login(){
     }
     const saveData=async (userId, userCred)=>{
                             // console.log(userId);
+        console.log("SAVE DATA");
+
                             let data={
                                 name:userCred.user.displayName,
                                 email:userCred.user.email, 

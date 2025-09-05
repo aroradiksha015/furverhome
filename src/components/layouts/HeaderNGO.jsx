@@ -118,7 +118,7 @@ export default function HeaderNGO(){
           </div>
         </li>
           <li className="nav-item">
-            <Link to="/requests" className="nav-link">
+            <Link to="/ngo/viewRequests" className="nav-link">
              Requests
             </Link>
           </li>

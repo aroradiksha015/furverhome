@@ -101,6 +101,7 @@ export default function AddBreeds(){
                             </label>
                             <input
                                 type="text"
+                                required
                                 className="form-control"
                                 name="breedName"
                                 id="breedName"
@@ -120,6 +121,7 @@ export default function AddBreeds(){
                             <input
                                 type="text"
                                 className="form-control"
+                                required
                                 name="text"
                                 id="text"
                                 placeholder="description"
@@ -137,6 +139,7 @@ export default function AddBreeds(){
                             </label>
                             <select
                                 className="form-control"
+                                required
                                value={type}
                                onChange={(e)=>{
                                 setType(e.target.value)
@@ -155,6 +158,7 @@ export default function AddBreeds(){
                             </label>
                             <input
                                 type="file"
+                                required
                                 className="form-control"
                                 name="text"
                                 id="text"

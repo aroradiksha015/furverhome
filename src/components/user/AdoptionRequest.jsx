@@ -36,8 +36,6 @@ export default function AdoptionRequest(){
         setImageName(e.target.value)
         setImage(e.target.files[0]);
     }
-  
-
      const saveData = async (imageUrl) => {
     try {
       let data = {
@@ -114,6 +112,7 @@ export default function AdoptionRequest(){
                             </label>
                             <input
                                 type="text"
+                                required
                                 className="form-control"
                                 name="salary"
                                 id="salary"
@@ -132,6 +131,7 @@ export default function AdoptionRequest(){
                             </label>
                             <input
                                 type="text"
+                                required
                                 className="form-control"
                                 name="text"
                                 id="bankstatment"
@@ -151,6 +151,7 @@ export default function AdoptionRequest(){
                             <input
                                 type="text"
                                 className="form-control"
+                                required
                                 name="address"
                                 id="address"
                                 placeholder="address"
@@ -168,6 +169,7 @@ export default function AdoptionRequest(){
                             </label>
                             <input
                                 type="text"
+                                required
                                 className="form-control"
                                 name="reason"
                                 id="reason"
@@ -187,6 +189,7 @@ export default function AdoptionRequest(){
                             <input
                                 type="file"
                                 className="form-control"
+                                required
                                 name="text"
                                 id="text"
                                 placeholder="description"

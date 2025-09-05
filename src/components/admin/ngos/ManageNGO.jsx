@@ -1,4 +1,4 @@
-import { collection, deleteDoc, doc, onSnapshot, query, where} from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot, query, updateDoc, where} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../Firebase";
 import Swal from "sweetalert2";
@@ -9,7 +9,7 @@ export default function ManageNGO(){
                 fetchData()
             },[])
             const fetchData=()=>{
-                let q=query(collection(db,"users"),where("usertype","==",2));
+                let q=query(collection(db,"users"),where("userType","==",2));
                 onSnapshot(q, (ngoCol)=>{
                     let ngoData=ngoCol.docs.map((el)=>{
                        return {...el.data(), id:el.id}
@@ -18,22 +18,22 @@ export default function ManageNGO(){
                 })
             }
             console.log(data);
-            const deletengo = async(userid)=>{
+            const changeStatus = async(userId,status)=>{
                    Swal.fire({
                   title: "Are you sure?",
-                  text: "You won't be able to revert this!",
+                  text: "Change the status",
                   icon: "warning",
                   showCancelButton: true,
                   confirmButtonColor: "#3085d6",
                   cancelButtonColor: "#d33",
-                  confirmButtonText: "Yes, delete it!"
+                  confirmButtonText: "Change"
                 }).then((result) => {
                   if (result.isConfirmed) {
-                     deleteDoc(doc(db,"users",userid))
+                 updateDoc(doc(db,"users",userId),{status:!status})
                      .then(()=>{
                          Swal.fire({
-                           title: "Deleted!",
-                           text: "Your file has been deleted.",
+                           title: "changed",
+                           text: "The Status has been changed.",
                            icon: "success"
                          });
                      })
@@ -65,7 +65,7 @@ export default function ManageNGO(){
                                 NGO <i className="ion-ios-arrow-forward" />
                                 </span>
                             </p>
-                            <h1 className="mb-0 bread">Breed</h1>
+                            <h1 className="mb-0 bread">NGO</h1>
                             </div>
                         </div>
                         </div>
@@ -96,8 +96,7 @@ export default function ManageNGO(){
                                         <td>{el?.contact}</td>
                                         <td>{el?.address}</td>
                                         <td>
-                                       <Link className="btn btn-success" to={"/admin/updateNGO/"+el.id}>Edit</Link> {' '} 
-                                        <Link className="btn btn-danger" onClick={()=>{deletengo(el.id)}}>Delete</Link>
+                                       <Link className="btn btn-success"onClick={()=>{changeStatus(el?.id,el.status)}}>{el.status?"Change Status":"Status:false"}</Link>
                                         </td>
                                     </tr>
                                 ))}

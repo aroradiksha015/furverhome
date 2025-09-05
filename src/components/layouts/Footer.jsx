@@ -43,70 +43,19 @@ export default function footer(){
             </li>
           </ul>
         </div>
-        {/* <div className="col-md-6 col-lg-3 mb-4 mb-md-0">
-          <h2 className="footer-heading">Latest News</h2>
+        <div className="col-md-6 col-lg-3 mb-4 mb-md-0">
+          <h2 className="footer-heading">Pet Adoption </h2>
           <div className="block-21 mb-4 d-flex">
-            <a
-              className="img mr-4 rounded"
-              style={{ backgroundImage: "url(/assets/images/image_1.jpg)" }}
-            />
+            
             <div className="text">
               <h3 className="heading">
-                <a href="#">
-                  Even the all-powerful Pointing has no control about
-                </a>
+                <p>When you adopt one pet, you don't just change their life- you also create space in our shelter to resuce another animal in beed. One adoption saves two lives!"</p>
               </h3>
-              <div className="meta">
-                <div>
-                  <a href="#">
-                    <span className="icon-calendar" /> April 7, 2020
-                  </a>
-                </div>
-                <div>
-                  <a href="#">
-                    <span className="icon-person" /> Admin
-                  </a>
-                </div>
-                <div>
-                  <a href="#">
-                    <span className="icon-chat" /> 19
-                  </a>
-                </div>
-              </div>
+              
             </div>
           </div>
-          <div className="block-21 mb-4 d-flex">
-            <a
-              className="img mr-4 rounded"
-              style={{ backgroundImage: "url(/assets/images/image_2.jpg)" }}
-            />
-            <div className="text">
-              <h3 className="heading">
-                <a href="#">
-                  Even the all-powerful Pointing has no control about
-                </a>
-              </h3>
-              <div className="meta">
-                <div>
-                  <a href="#">
-                    <span className="icon-calendar" /> April 7, 2020
-                  </a>
-                </div>
-                <div>
-                  <a href="#">
-                    <span className="icon-person" /> Admin
-                  </a>
-                </div>
-                <div>
-                  <a href="#">
-                    <span className="icon-chat" /> 19
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-        <div className="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
+        </div>
+        {/* <div className="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
           <h2 className="footer-heading">Quick Links</h2>
           <ul className="list-unstyled">
             <li>
@@ -133,14 +82,16 @@ export default function footer(){
               <Link to="/blog" className="py-2 d-block">
                 Blog
               </Link>
-            </li> */}
+            </li> 
             <li>
               <Link to="/contact" className="py-2 d-block">
                 Contact
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
+
+
         
         <div className="col-md-6 col-lg-3 mb-4 mb-md-0">
           <h2 className="footer-heading">Have a Questions?</h2>
@@ -171,6 +122,7 @@ export default function footer(){
       <div className="row mt-5">
         <div className="col-md-12 text-center">
           <p className="copyright">
+            
             
             Copyright © All rights reserved | This is made with{" "}
             <i className="fa fa-heart" aria-hidden="true" /> by{" "}

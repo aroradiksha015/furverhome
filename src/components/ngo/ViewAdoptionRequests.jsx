@@ -1,17 +1,16 @@
 import { collection, deleteDoc, doc, onSnapshot, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
-import { db } from "../../Firebase";
+import { db } from "../Firebase";
 
-export default function ViewRequests(){
+
+export default function ViewAdoptionRequets(){
+    const email = sessionStorage.getItem("email");
     const [data, setData]=useState([])
     useEffect(()=>{
         fetchData()
     },[])
     const fetchData=()=>{ 
-        let q=query(collection(db,"adoptionRequests")
-    )
+         const q = query(collection(db, "adoptionRequests"));
         onSnapshot(q, (requestsCol)=>{
             let requestsData=requestsCol.docs.map((el)=>{
                return {...el.data(), id:el.id}
@@ -69,8 +68,7 @@ export default function ViewRequests(){
                                 <td>{el?.userName}</td>
                                 <td>{el?.userEmail}</td>
                                 <td>{el?.bankstatment}</td>
-                                <td>{el?.address}</td>
-                                
+                                <td>{el?.address}</td>  
                             </tr>
                         ))}
                     </tbody>

@@ -3,7 +3,6 @@ import Contact from './components/pages/Contact';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/pages/Home';
 import Error from './components/pages/Error';
-import Login from './components/auth/login';
 import Register from './components/auth/Regsiter';
 import { ToastContainer } from 'react-toastify';
 import RegisterNGO from './components/auth/RegisterNGO';
@@ -29,6 +28,12 @@ import AdoptionRequest from './components/user/adoptionRequest';
 import Petdetails from './components/user/PetDetails';
 import ViewQueries from './components/admin/queries/ViewQueries';
 import ViewRequests from './components/admin/requests/ViewRequests';
+import Login from './components/auth/Login';
+import DashboardAdmin from './components/admin/dashboard/DashboardAdmin';
+
+import DashboardNGO from './components/ngo/dashboard/dashboardNGO';
+import ViewAdoptionRequets from './components/ngo/ViewAdoptionRequests';
+
 function App() {
   return (
     <>
@@ -52,6 +57,8 @@ function App() {
 
       {/* {admin} */}
       <Route path="/admin" element={<MasterAdmin/>}>
+      <Route index element={<DashboardAdmin/>}></Route>
+
       <Route path = "users" element ={<ManageUsers/>}></Route>
       <Route path="addBreeds" element={<AddBreeds/>}></Route>
       <Route path="manageBreeds" element={<ManageBreeds/>}></Route>
@@ -71,10 +78,12 @@ function App() {
       
       {/* {NGO} */}
       <Route path="/ngo" element={<MasterNGO/>}>
+      <Route index element={<DashboardNGO/>}></Route>
       {/* <Route path="/registerNGO" element={<RegisterNGO/>}></Route> */}
       <Route path="addPets" element={<AddPet/>}></Route>
       <Route path="managePets" element={<ManagePets/>}></Route>
       <Route path="updatePets/:id" element={<UpdatePet/>}></Route>
+      <Route path = "viewRequests" element={<ViewAdoptionRequets/>}></Route>
 
       </Route>
 

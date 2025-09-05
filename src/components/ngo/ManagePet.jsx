@@ -1,4 +1,4 @@
-import { collection, deleteDoc, doc, onSnapshot, query } from "firebase/firestore"
+import { collection, deleteDoc, doc, onSnapshot, query, where } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../Firebase"
 import { Link } from "react-router-dom"
@@ -9,8 +9,9 @@ export default function ManagePets(){
         fetchData()
     },[])
     const [data, setData]=useState()
+    const email = sessionStorage.getItem("email");
     const fetchData=()=>{
-        let q=query(collection(db,"pets"))
+        const q = query(collection(db, "pets"),where("ngoemail", "==", email));
         onSnapshot(q,(petsCol)=>{
             let petsData=petsCol.docs.map((el)=>{
                 return{...el.data(),id: el.id};
