@@ -33,7 +33,6 @@ import DashboardNGO from './components/ngo/dashboard/dashboardNGO';
 import ViewAdoptionRequets from './components/ngo/ViewAdoptionRequests';
 import TrackRequest from './components/user/TrackRequest';
 import 'react-responsive-modal/styles.css';
-
 function App() {
   return (
     <>
@@ -50,11 +49,9 @@ function App() {
       <Route path="viewNGO" element = {<ViewNG0/>}></Route>
       <Route path="petDetails/:id" element={<Petdetails/>}></Route>                              
       <Route path = "addRequest/:id/:ngoemail/:petname"  element={<AdoptionRequest/>}></Route>
-    
       <Route path ="trackRequest" element={<TrackRequest/>}></Route>
         </Route>
       <Route path="*" element={<Error/>}></Route>
-
       {/* {admin} */}
       <Route path="/admin" element={<MasterAdmin/>}>
       <Route index element={<DashboardAdmin/>}></Route>
@@ -66,15 +63,10 @@ function App() {
       <Route path="managePet"element={<ManagePet/>}></Route>
       <Route path="updateBreed/:id"element={<UpdateBreed/>}></Route>
       <Route path = "updateNGO/:id" element={<UpdateNGO/>}></Route>
-    
       <Route path = "updatePets/:id" element={<UpdatePets/>}></Route>
       <Route path= "viewQueries" element={<ViewQueries/>}></Route>
       <Route path="viewRequests"element={<ViewRequests/>}></Route>
-
-
       </Route>
-
-      
       {/* {NGO} */}
       <Route path="/ngo" element={<MasterNGO/>}>
       <Route index element={<DashboardNGO/>}></Route>
@@ -83,11 +75,7 @@ function App() {
       <Route path="managePets" element={<ManagePets/>}></Route>
       <Route path="updatePets/:id" element={<UpdatePet/>}></Route>
       <Route path = "viewRequests" element={<ViewAdoptionRequets/>}></Route>
-
       </Route>
-
-      
-
       </Routes>
     </BrowserRouter>
     <ToastContainer/>
