@@ -144,11 +144,19 @@ export default function HeaderAdmin(){
              Pets
             </Link> 
           </li>
-          <li className="nav-item">
-            <Link to="/admin/viewQueries" className="nav-link">
-             Queries
-            </Link> 
-          </li>
+         
+
+          <li className="nav-item dropdown">
+          <a className="dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Others
+          </a>
+
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <Link to={"/admin/viewQueries"} className="dropdown-item">View Queries</Link>
+            <Link to={"/admin/viewDonations"} className="dropdown-item">View Donations</Link>
+          </div>
+        </li>
+          
           {
             //condition?true:false
           isLogin?

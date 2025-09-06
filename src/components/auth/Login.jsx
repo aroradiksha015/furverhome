@@ -14,7 +14,7 @@ export default function Login(){
                     console.log(userData);
                     if(userData?.status==true){
                     sessionStorage.setItem("isLogin", "true")
-                    sessionStorage.setItem("dummy","simran")
+                    // sessionStorage.setItem("dummy","simran")
                     sessionStorage.setItem("name", userData?.name)
                     sessionStorage.setItem("email", userData?.email)
                     sessionStorage.setItem("userType", userData?.userType)

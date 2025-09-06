@@ -122,6 +122,11 @@ export default function HeaderNGO(){
              Requests
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to="/ngo/viewDonations" className="nav-link">
+             Donations
+            </Link>
+          </li>
           {
             //condition?true:false
           isLogin?

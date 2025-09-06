@@ -17,10 +17,10 @@ export default function RegisterNGO(){
     const handleForm = (e)=>{
         e.preventDefault()
         createUserWithEmailAndPassword(auth,email,password)
-        .then((userCred)=>{
+        .then(async(userCred)=>{
             console.log(userCred.user.uid)
             toast.success("Registered Successfully")
-            saveData(userCred.user.uid)
+            await saveData(userCred.user.uid)
             nav("/ngo")
         })
         .catch((err)=>{

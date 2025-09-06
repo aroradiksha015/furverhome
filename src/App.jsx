@@ -33,6 +33,8 @@ import DashboardNGO from './components/ngo/dashboard/dashboardNGO';
 import ViewAdoptionRequets from './components/ngo/ViewAdoptionRequests';
 import TrackRequest from './components/user/TrackRequest';
 import 'react-responsive-modal/styles.css';
+import Donation from './components/admin/donations/Donation';
+import ViewDonation from './components/ngo/ViewDonation';
 function App() {
   return (
     <>
@@ -66,6 +68,7 @@ function App() {
       <Route path = "updatePets/:id" element={<UpdatePets/>}></Route>
       <Route path= "viewQueries" element={<ViewQueries/>}></Route>
       <Route path="viewRequests"element={<ViewRequests/>}></Route>
+      <Route path ="viewDonations" element={<Donation/>}></Route>
       </Route>
       {/* {NGO} */}
       <Route path="/ngo" element={<MasterNGO/>}>
@@ -75,6 +78,7 @@ function App() {
       <Route path="managePets" element={<ManagePets/>}></Route>
       <Route path="updatePets/:id" element={<UpdatePet/>}></Route>
       <Route path = "viewRequests" element={<ViewAdoptionRequets/>}></Route>
+      <Route path="viewDonations" element={<ViewDonation/>}></Route>
       </Route>
       </Routes>
     </BrowserRouter>

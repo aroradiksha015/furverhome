@@ -1,7 +1,9 @@
-import { addDoc, collection, Timestamp } from "firebase/firestore"
+import { addDoc, collection, doc, setDoc, Timestamp } from "firebase/firestore"
 import { useState } from "react"
-import { db } from "../../Firebase"
+import { auth, db } from "../../Firebase"
 import { toast } from "react-toastify"
+import { createUserWithEmailAndPassword } from "firebase/auth"
+import { useNavigate } from "react-router-dom"
 export default function AddNGO(){
        const [name, setName]=useState("")
         const [email, setEmail]=useState("")
@@ -10,7 +12,22 @@ export default function AddNGO(){
         const [licenseNO, setLicenseNO]=useState("")
         const [about, setAbout]=useState("")
         const [address, setAddress]=useState("")
-        const saveData=async()=>{
+        let nav = useNavigate()
+
+        const handleForm=async(e)=>{
+        e.preventDefault() 
+       createUserWithEmailAndPassword(auth,email,password)
+               .then(async(userCred)=>{
+                   console.log(userCred.user.uid)
+                   toast.success("Registered Successfully")
+                   await saveData(userCred.user.uid)
+                   nav("/ngo")
+               })
+               .catch((err)=>{
+                   toast.error(err.message);
+               }
+               )
+        const saveData=async(userId)=>{
                 try{
                     let data={
                         name,
@@ -25,28 +42,12 @@ export default function AddNGO(){
                         createdAt:Timestamp.now()
                     }
                     console.log(data);
-                    await addDoc(collection(db,"users"),data)
-                    toast.success("NGO added successfully!!")
-                    setName("")
-                    setEmail("")
-                    setPassword("")
-                    setContact("")
-                    setLicenseNO("")
-                    setAbout("")
-                    setAddress("")
+                    await setDoc(doc(db,"users",userId),data)
                 }
                 catch(err){
                     toast.error(err.message)
                 }
             }
-        const handleForm=async(e)=>{
-        e.preventDefault() 
-        try{
-        saveData();
-        }
-        catch(err){
-            toast.error(err.message)
-        }
     }
 
     return(
@@ -174,7 +175,7 @@ export default function AddNGO(){
                                License Number
                             </label>
                             <input
-                                type="licenseNo"
+                                type="text"
                                 className="form-control"
                                 required
                                 name="licenseNo"
