@@ -84,8 +84,8 @@ export default function ViewBreeds(){
           style={{ height: "250px", objectFit: "cover" }}
         />
         <div className="card-body text-center">
-          <h5 className="card-title">{el?.breedName}</h5>
-          <p className="card-text text-muted">{el?.type}</p>
+          <h5 className="card-title">Name: {el?.breedName}</h5>
+          <p className="card-text text-muted">Type: {el?.type}</p>
         </div>
       </div>
     </div>

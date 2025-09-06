@@ -85,6 +85,7 @@ export default function ViewAdoptionRequets(){
                             <th>Email</th>
                             <th>Bank Statment</th>
                             <th>Address</th>
+                            <th>Address Proof</th>
                             <th>Approve Request</th>
                         </tr>
                     </thead>
@@ -95,11 +96,25 @@ export default function ViewAdoptionRequets(){
                                 <td>{el?.userName}</td>
                                 <td>{el?.userEmail}</td>
                                 <td>{el?.bankstatment}</td>
-                                <td>{el?.address}</td> 
+                                <td>{el?.address}</td>
                                 <td>
-                                     <Link className="btn btn-success"onClick={() => RequestApproved(el?.id, el?.status)}>
-                                     {el?.status === true ? "Request Approved" : "Approve Request"}
-                                     </Link>
+                                    <img
+                                        className="card-img-top"
+                                        src={el?.imageUrl || "https://via.placeholder.com/300x200"}
+                                        alt="user"
+                                        width="100"
+                                        height="70"
+                                    />
+                                    </td>
+                                <td>
+                                     <td>
+                                            <button
+                                                className="btn btn-success"
+                                                onClick={() => RequestApproved(el?.id, el?.status)}
+                                            >
+                                                {el?.status === true ? "Request Approved" : "Approve Request"}
+                                            </button>
+                                            </td>
                                     </td> 
                             </tr>
 

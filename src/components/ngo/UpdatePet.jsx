@@ -62,7 +62,7 @@ export default function UpdatePet(){
             toast.success("Pet updated successfully!!")
              setpreviousimage(imageUrl)
             setTimeout(()=>{
-                nav("/admin/manageBreeds")
+                nav("/ngo/managePets")
             },2000)
         }
         catch(err){
@@ -188,17 +188,7 @@ export default function UpdatePet(){
                                 <option key={el.id} value={el.breedName}>{el.breedName}</option>
                             ))}
                         </select>
-                            {/* <select
-                                className="form-control"
-                               value={type}
-                               onChange={(e)=>{
-                                setType(e.target.value)
-                               }}
-                            >
-                                <option selected disabled value={""}>Choose one</option>
-                                <option>Dog</option>
-                                <option>Cat</option>
-                            </select> */}
+                            
                             </div>
                         </div>
                          <div className="col-md-12">

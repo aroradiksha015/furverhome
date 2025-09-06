@@ -44,6 +44,7 @@ export default function AdoptionRequest(){
         address,
         reason,
         petId:id,
+        imageUrl,
         petname:petname,
         ngoemail:ngoemail,
         userId: sessionStorage.getItem("userID"),

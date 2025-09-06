@@ -92,8 +92,8 @@ export default function ManagePets(){
                             <div className="card-body text-center">
                             <h5 className="card-title">{el?.petname}</h5>
                             <p className="card-text text-muted">{el?.type}</p>
-                            <Link className="btn btn-success" to={"/admin/UpdatePets/"+el?.id}>Edit</Link> {' '}
-                                        <Link className="btn btn-danger" onClick={()=>{deletepet(el.id)}}>Delete</Link>
+                            <Link className="btn btn-success" to={"/ngo/updatePets/"+el?.id}>Edit</Link> {' '}
+                            <Link className="btn btn-danger" onClick={()=>{deletepet(el.id)}}>Delete</Link>
 
                             </div>
                         </div>

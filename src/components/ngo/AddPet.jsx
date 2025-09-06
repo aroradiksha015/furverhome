@@ -166,17 +166,7 @@ export default function AddPet(){
                                 <option value={el.breedName}>{el.breedName}</option>
                             ))}
                         </select>
-                            {/* <select
-                                className="form-control"
-                               value={type}
-                               onChange={(e)=>{
-                                setType(e.target.value)
-                               }}
-                            >
-                                <option selected disabled value={""}>Choose one</option>
-                                <option>Dog</option>
-                                <option>Cat</option>
-                            </select> */}
+                            
                             </div>
                         </div>
                          <div className="col-md-12">

@@ -56,14 +56,14 @@ export default function TrackRequest(){
           <div className="col-md-4 my-4" key={index}>
             <div className="card shadow h-100">
               <div className="card-body">
-                <h5 className="card-title text-primary text-center">
+                <h5 className="card-title text-primary text-center"> Pet Name:
                   {el?.petname || "//Pet"}
                 </h5>
                 <p className="card-text">
-                  <strong>Requested By:</strong> {el.userEmail}
+                  <strong>Requested By: </strong> {el.userEmail}
                 </p>
                 <p className="card-text">
-                  <strong>Status:</strong>{el.status == true ?"Approved":"Not Accepted yet"}
+                  <strong>Status: </strong>{el.status == true ?"Approved":"Not Accepted yet"}
                 </p>
               </div>
             </div>

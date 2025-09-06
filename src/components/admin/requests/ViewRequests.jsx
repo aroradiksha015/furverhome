@@ -58,8 +58,11 @@ export default function ViewRequests(){
                             <th>Sno</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Bank Statment</th>
-                            <th>Address</th>
+                            <th>Pet Name</th>
+                            <th>NGO Email</th>
+                            <th>Bank Statment of User</th>
+                            <th>Address of User</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,8 +71,12 @@ export default function ViewRequests(){
                                 <td>{index+1}</td>
                                 <td>{el?.userName}</td>
                                 <td>{el?.userEmail}</td>
+                                <td>{el?.petname}</td>
+                                <td>{el?.ngoemail}</td>
                                 <td>{el?.bankstatment}</td>
                                 <td>{el?.address}</td>
+                                <td>{el?.status==true?"Approved by NGO":"Not yet Approved"}</td>
+
                                 
                             </tr>
                         ))}

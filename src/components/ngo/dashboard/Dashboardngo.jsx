@@ -18,8 +18,11 @@ export default function DashboardNGO(){
                         })
                         setPets(petsData)
                     })
-
-                    let q2=query(collection(db,"adoptionRequests"),where("ngoemail","==",email));
+                    const q2 = query(
+                      collection(db, "adoptionRequests"),
+                      where("ngoemail", "==", email),
+                      where("status", "==", false)  // ✅ add status filter
+                    );
                     onSnapshot(q2,(requestCol)=>{
                         let requestsData=requestCol.docs.map((el)=>{
                         return{...el.data(),id: el.id};   
@@ -66,7 +69,7 @@ export default function DashboardNGO(){
         <Link to = "/ngo/managePets">
         <div className="card-body">
           <h5 className="card-title fs-4 fw-bold">Pets Hosted</h5>
-          <h2 className="display-4 text-success"> {request.length>0?request.length:"0"}</h2>
+          <h2 className="display-4 text-success"> {pets.length>0?pets.length:"0"}</h2>
         </div>
         </Link>
       </div>
@@ -75,10 +78,10 @@ export default function DashboardNGO(){
 
      <div className="col-md-4 my-2">
       <div className="card text-center shadow-lg p-4" style={{ minHeight: "180px" }}>
-        <Link to = "/ngo/managePets">
+        <Link to = "/ngo/viewRequests">
         <div className="card-body">
           <h5 className="card-title fs-4 fw-bold">Adoption Requests</h5>
-          <h2 className="display-4 text-success"> {pets.length>0?pets.length:"0"}</h2>
+          <h2 className="display-4 text-success"> {request.length>0?request.length:"0"}</h2>
         </div>
         </Link>
       </div>
