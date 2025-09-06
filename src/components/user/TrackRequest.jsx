@@ -57,25 +57,13 @@ export default function TrackRequest(){
             <div className="card shadow h-100">
               <div className="card-body">
                 <h5 className="card-title text-primary text-center">
-                  {el.petName || "//Pet"}
+                  {el?.petname || "//Pet"}
                 </h5>
                 <p className="card-text">
                   <strong>Requested By:</strong> {el.userEmail}
                 </p>
-            
                 <p className="card-text">
-                  <strong>Status:</strong>{" "}
-                  <span
-                    className={`badge ${
-                      el.status === "Approved"
-                        ? "bg-success"
-                        : el.status === "Rejected"
-                        ? "bg-danger"
-                        : "bg-warning text-dark"
-                    }`}
-                  >
-                    {el.status || "Unknown"}
-                  </span>
+                  <strong>Status:</strong>{el.status == true ?"Approved":"Not Accepted yet"}
                 </p>
               </div>
             </div>

@@ -114,7 +114,7 @@ export default function PetDetails() {
                     {sessionStorage.getItem("isLogin") == "true" ? (
                       <Link
                         className="btn btn-success"
-                        to={"/addRequest/" + pet?.id}
+                        to={"/addRequest/" + pet?.id+"/"+pet?.ngoemail+"/"+pet?.petname}
                       >
                         ADOPT
                       </Link>

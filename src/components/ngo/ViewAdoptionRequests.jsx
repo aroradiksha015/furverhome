@@ -1,6 +1,8 @@
-import { collection, deleteDoc, doc, onSnapshot, query } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot, query, updateDoc, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../Firebase";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 export default function ViewAdoptionRequets(){
@@ -10,7 +12,7 @@ export default function ViewAdoptionRequets(){
         fetchData()
     },[])
     const fetchData=()=>{ 
-         const q = query(collection(db, "adoptionRequests"));
+         const q = query(collection(db, "adoptionRequests"),where("ngoemail" ,"==" ,email));
         onSnapshot(q, (requestsCol)=>{
             let requestsData=requestsCol.docs.map((el)=>{
                return {...el.data(), id:el.id}
@@ -18,8 +20,32 @@ export default function ViewAdoptionRequets(){
             console.log(requestsData);
             setData(requestsData)
         })
-      
     }
+      const RequestApproved = async(userId,status)=>{
+                       Swal.fire({
+                      title: "Are you sure?",
+                      text: "Approve Request",
+                      icon: "warning",
+                      showCancelButton: true,
+                      confirmButtonColor: "#3085d6",
+                      cancelButtonColor: "#d33",
+                      confirmButtonText: "Change"
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                     updateDoc(doc(db,"adoptionRequests",userId),{status:!status})
+                         .then(()=>{
+                             Swal.fire({
+                               title: "changed",
+                               text: "The Status has been changed.",
+                               icon: "success"
+                             });
+                         })
+                         .catch((err)=>{
+                            toast.error(err.message)
+                         })
+                      }
+                    });
+                       }
        
 
  
@@ -59,6 +85,7 @@ export default function ViewAdoptionRequets(){
                             <th>Email</th>
                             <th>Bank Statment</th>
                             <th>Address</th>
+                            <th>Approve Request</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,8 +95,12 @@ export default function ViewAdoptionRequets(){
                                 <td>{el?.userName}</td>
                                 <td>{el?.userEmail}</td>
                                 <td>{el?.bankstatment}</td>
-                                <td>{el?.address}</td>  
+                                <td>{el?.address}</td> 
+                                <td>
+                                     <Link className="btn btn-success" onClick={()=>{RequestApproved(el?.id,el?.status)}}>Approve Request</Link>
+                                    </td> 
                             </tr>
+
                         ))}
                     </tbody>
                 </table>

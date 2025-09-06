@@ -13,7 +13,7 @@ export default function AdoptionRequest(){
     const [imageName, setImageName]=useState("")
     const [reason, setReason]=useState("")
 
-     var {id} = useParams()
+     var {id,ngoemail,petname} = useParams()
     console.log("params is",id);
 
      const handleForm=async (e)=>{
@@ -44,10 +44,12 @@ export default function AdoptionRequest(){
         address,
         reason,
         petId:id,
+        petname:petname,
+        ngoemail:ngoemail,
         userId: sessionStorage.getItem("userID"),
         userName: sessionStorage.getItem("name"),
         userEmail: sessionStorage.getItem("email"),
-        status: "Pending",
+        status: "false",
         createdAt: Timestamp.now(),
       };
 

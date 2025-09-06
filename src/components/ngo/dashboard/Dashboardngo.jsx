@@ -19,7 +19,7 @@ export default function DashboardNGO(){
                         setPets(petsData)
                     })
 
-                    let q2=query(collection(db,"adoptionRequests"));
+                    let q2=query(collection(db,"adoptionRequests"),where("ngoemail","==",email));
                     onSnapshot(q2,(requestCol)=>{
                         let requestsData=requestCol.docs.map((el)=>{
                         return{...el.data(),id: el.id};   

@@ -50,7 +50,7 @@ export default function AdminDashboard() {
                       setQueries(queriesData)
                   })
 
-                    let requestsq=query(collection(db,"adoptionRequests"),where("status", "==", "Pending"));
+                    let requestsq=query(collection(db,"adoptionRequests"),where("status", "==", "false"));
                onSnapshot(requestsq,(requestsCol)=>{
                     let requestsData=requestsCol.docs.map((el)=>{
                         return{...el.data(),id: el.id}; 

@@ -34,6 +34,8 @@ import DashboardAdmin from './components/admin/dashboard/DashboardAdmin';
 import DashboardNGO from './components/ngo/dashboard/dashboardNGO';
 import ViewAdoptionRequets from './components/ngo/ViewAdoptionRequests';
 import TrackRequest from './components/user/TrackRequest';
+import NewComponent from './components/admin/NewComponent';
+import 'react-responsive-modal/styles.css';
 
 function App() {
   return (
@@ -50,7 +52,8 @@ function App() {
       <Route path="viewPets" element={<ViewPets/>}></Route>
       <Route path="viewNGO" element = {<ViewNG0/>}></Route>
       <Route path="petDetails/:id" element={<Petdetails/>}></Route>                              
-      <Route path = "addRequest/:id"  element={<AdoptionRequest/>}></Route>
+      <Route path = "addRequest/:id/:ngoemail/:petname"  element={<AdoptionRequest/>}></Route>
+      <Route path = "newComponent" element={<NewComponent/>}></Route>
     
       <Route path ="trackRequest" element={<TrackRequest/>}></Route>
         </Route>

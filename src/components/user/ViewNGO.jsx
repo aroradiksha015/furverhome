@@ -1,8 +1,68 @@
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../Firebase";
+import Modal from "react-responsive-modal";
 
 export default function ViewNG0(){
+  const [open, setOpen] = useState(false);
+  const[donate,setDonate] = useState("")
+
+  const onOpenModal = (email,name,id) =>{
+    console.log("is open is called");
+
+setOpen(true);
+  } 
+ const  donatenow= (email,name,id)=>{
+
+   const options = {
+              key: "", // Replace with your Razorpay key
+              amount:{donate} ,// Amount in paise (₹500 = 50000)
+              currency: "INR",
+              name: "Kinder",
+              description: "Test Transaction",
+              handler: async function (response) {
+                  
+                  console.log("This is response", response);
+  
+                  const data = {
+                      id,
+                      name,
+                      status: true,
+                      PaymentId: response.razorpay_payment_id
+  
+                  }
+                  addDoc(collection(db, "payments"), data).then(() => {
+                      toast.success("Ordered successfully")
+                  }).catch(() => {
+                      toast.error("Ordered UNsuccessfully")
+  
+                  })
+  
+              },
+              prefill: {
+                  name: "Arshpreet Singh",
+                  email: "arsh@example.com",
+                  contact: "9999999999",
+              },
+              notes: {
+                  address: "Test Address",
+              },
+              theme: {
+                  color: "#3399cc",
+              },
+          };
+  
+          const rzp = new window.Razorpay(options);
+          rzp.open();
+  
+          return options
+  
+  
+      }
+
+
+ }
+  const onCloseModal = () => setOpen(false);
            const [data, setData]=useState([])
             useEffect(()=>{
                 fetchData()
@@ -67,6 +127,19 @@ export default function ViewNG0(){
             <p className="card-text">
               <strong>Address:</strong> {el?.address || "N/A"}
             </p>
+            {/* <p className="btn btn-success"> DONATE NGO
+            </p> */}
+              <button onClick={()=>{onOpenModal(el?.email,el?.name,el?.id)}} type="button">DONATE NOW</button>
+      <Modal open={open} onClose={onCloseModal} center>
+        <h2>Simple centered modal</h2>
+        <label name = "amt" id="amt">Enter the Amount</label>
+        <input name="amt" id="amt" type="number" required>
+        </input>  value={donate} onChange={(e)=>{
+                                    setDonate(e.target.value)}}
+        
+        <button onClick={()=>{donatenow(el?.email,el?.name,el?.id)}}>Donate</button>
+      </Modal>
+    
           </div>
         </div>
       </div>
@@ -76,4 +149,4 @@ export default function ViewNG0(){
 
                 </>
             )
-        }
+       
