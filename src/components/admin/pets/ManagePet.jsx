@@ -76,40 +76,6 @@ export default function ManagePet(){
                     <h2>Pets Gallery</h2>
                     </div>
                 </div>
-                {/* <div className="row">
-                    {data?.map((el,index)=>(
-                    <div className="col-md-4 ftco-animate">
-                    <div
-                        className="work mb-4 img d-flex align-items-end"
-                        style={{ backgroundImage: `url(${el?.imageUrl})` }}
-                    >
-                        <a
-                        href="/assets/images/gallery-1.jpg"
-                        className="icon image-popup d-flex justify-content-center align-items-center"
-                        >
-                        <span className="fa fa-expand" />
-                        </a>
-                        <div className="desc w-100 px-4">
-                        <div className="text w-100 mb-3">
-                            <span>{el?.type}</span>
-                            <h2>
-                            <a href="work-single.html">{el?.petname}</a>
-                            </h2>
-                        </div>
-                        </div>
-                         
-                    </div>
-                    <div class="d-flex justify-content-center">
-                 
-                  
-                  <Link className="btn btn-success" to={"/admin/UpdatePets/"+el?.id}>Edit</Link>
-                    <Link className="btn btn-danger" onClick={()=>{deletepet(el.id)}}>Delete</Link>
-                    </div>
-                    </div>
-                    ))}
-                   
-                </div> */}
-
                 
                     <div className="row">
                     {data?.map((el, index) => (

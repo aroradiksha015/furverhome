@@ -54,7 +54,6 @@ export default function ViewQueries() {
                         <th>Name</th>
                         <th>Email</th>
                         <th>Message</th>
-                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>

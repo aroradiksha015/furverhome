@@ -19,10 +19,10 @@ export function ManageUsers(){
     })
   }
   
-  const changeStatus=async(userId)=>{
+  const changeStatus=async(userId,status)=>{
         Swal.fire({
         title: "Are you sure?",
-        text: "Change the Status of user to false",
+        text: "Change the Status of user",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -30,8 +30,7 @@ export function ManageUsers(){
         confirmButtonText: "Change"
       }).then((result) => {
         if (result.isConfirmed) { 
-           updateDoc(doc(db,"users",userId),{status:false})
-
+           updateDoc(doc(db,"users",userId),{status:!status})
            .then(()=>{
                Swal.fire({
                  title: "Status Changed",
@@ -97,7 +96,7 @@ export function ManageUsers(){
               <td>{el?.email}</td>
               <td>{el?.contact}</td>
               <td>
-                <Link className="btn btn-success" onClick={()=>{changeStatus(el.id)}}>{el.status?"Change Status":"Status:false"}</Link>
+                <Link className="btn btn-success" onClick={()=>{changeStatus(el?.id,el?.status)}}>{el.status?"Change Status":"Status:false"}</Link>
 
               </td>
             </tr>

@@ -180,16 +180,11 @@ export default function Header() {
                   </Link>
                 </div>
               </li>
-              {/* <li className="nav-item">
-            <Link to="/register" className="nav-link">
-              Register
-            </Link> 
-          </li> */}
               {
                 //condition?true:false
                 isLogin ? (
                   <li className="nav-item">
-                    <Link  onClick={logout} className="nav-link">
+                    <Link onClick={logout} className="nav-link">
                       Logout
                     </Link>
                   </li>

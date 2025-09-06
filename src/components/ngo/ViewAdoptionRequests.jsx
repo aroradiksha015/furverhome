@@ -97,7 +97,9 @@ export default function ViewAdoptionRequets(){
                                 <td>{el?.bankstatment}</td>
                                 <td>{el?.address}</td> 
                                 <td>
-                                     <Link className="btn btn-success" onClick={()=>{RequestApproved(el?.id,el?.status)}}>Approve Request</Link>
+                                     <Link className="btn btn-success"onClick={() => RequestApproved(el?.id, el?.status)}>
+                                     {el?.status === true ? "Request Approved" : "Approve Request"}
+                                     </Link>
                                     </td> 
                             </tr>
 

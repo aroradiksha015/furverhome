@@ -126,7 +126,7 @@ export default function HeaderNGO(){
             //condition?true:false
           isLogin?
           <li className="nav-item">
-            <Link to={"/admin"} onClick={logout} className="nav-link">
+            <Link  onClick={logout} className="nav-link">
               Logout
             </Link>
           </li>

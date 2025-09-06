@@ -22,7 +22,6 @@ import UpdateBreed from './components/admin/breeds/UpdateBreeds';
 import UpdatePet from './components/ngo/UpdatePet';
 import UpdateNGO from './components/admin/ngos/UpdateNGO';
 import { ManageUsers } from './components/admin/users/ManageUsers';
-import { UpdateUsers } from './components/admin/users/UpdateUsers';
 import UpdatePets from './components/admin/pets/UpdatePets';
 import AdoptionRequest from './components/user/adoptionRequest';
 import Petdetails from './components/user/PetDetails';
@@ -30,11 +29,9 @@ import ViewQueries from './components/admin/queries/ViewQueries';
 import ViewRequests from './components/admin/requests/ViewRequests';
 import Login from './components/auth/Login';
 import DashboardAdmin from './components/admin/dashboard/DashboardAdmin';
-
 import DashboardNGO from './components/ngo/dashboard/dashboardNGO';
 import ViewAdoptionRequets from './components/ngo/ViewAdoptionRequests';
 import TrackRequest from './components/user/TrackRequest';
-import NewComponent from './components/admin/NewComponent';
 import 'react-responsive-modal/styles.css';
 
 function App() {
@@ -53,7 +50,6 @@ function App() {
       <Route path="viewNGO" element = {<ViewNG0/>}></Route>
       <Route path="petDetails/:id" element={<Petdetails/>}></Route>                              
       <Route path = "addRequest/:id/:ngoemail/:petname"  element={<AdoptionRequest/>}></Route>
-      <Route path = "newComponent" element={<NewComponent/>}></Route>
     
       <Route path ="trackRequest" element={<TrackRequest/>}></Route>
         </Route>
@@ -62,7 +58,6 @@ function App() {
       {/* {admin} */}
       <Route path="/admin" element={<MasterAdmin/>}>
       <Route index element={<DashboardAdmin/>}></Route>
-
       <Route path = "users" element ={<ManageUsers/>}></Route>
       <Route path="addBreeds" element={<AddBreeds/>}></Route>
       <Route path="manageBreeds" element={<ManageBreeds/>}></Route>
@@ -71,7 +66,7 @@ function App() {
       <Route path="managePet"element={<ManagePet/>}></Route>
       <Route path="updateBreed/:id"element={<UpdateBreed/>}></Route>
       <Route path = "updateNGO/:id" element={<UpdateNGO/>}></Route>
-      <Route path = "updateUsers/:id" element={<UpdateUsers/>}></Route>
+    
       <Route path = "updatePets/:id" element={<UpdatePets/>}></Route>
       <Route path= "viewQueries" element={<ViewQueries/>}></Route>
       <Route path="viewRequests"element={<ViewRequests/>}></Route>
