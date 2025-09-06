@@ -1,67 +1,56 @@
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { addDoc, collection, onSnapshot, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../Firebase";
 import Modal from "react-responsive-modal";
+import { toast } from "react-toastify";
 
 export default function ViewNG0(){
-  const [open, setOpen] = useState(false);
-  const[donate,setDonate] = useState("")
-
-  const onOpenModal = (email,name,id) =>{
-    console.log("is open is called");
-
+const [open, setOpen] = useState(false);
+const[donate,setDonate] = useState("")
+const onOpenModal = (email,name,id) =>{
+console.log("is open is called");
 setOpen(true);
   } 
  const  donatenow= (email,name,id)=>{
-
    const options = {
-              key: "", // Replace with your Razorpay key
-              amount:{donate} ,// Amount in paise (₹500 = 50000)
+              key:"rzp_test_REGDFtTH2ozd7r",
+              amount:donate*100,
               currency: "INR",
-              name: "Kinder",
+              name: "FurEverHome",
               description: "Test Transaction",
               handler: async function (response) {
-                  
                   console.log("This is response", response);
-  
                   const data = {
                       id,
                       name,
                       status: true,
                       PaymentId: response.razorpay_payment_id
-  
                   }
                   addDoc(collection(db, "payments"), data).then(() => {
-                      toast.success("Ordered successfully")
+                      toast.success("Thankyou")
+                      setOpen(false)
                   }).catch(() => {
-                      toast.error("Ordered UNsuccessfully")
+                      toast.error("Donation Unsucessful")
   
                   })
   
               },
               prefill: {
-                  name: "Arshpreet Singh",
-                  email: "arsh@example.com",
+                  name: "Diksha Arora",
+                  email: "aroradiksha01@gmail.com",
                   contact: "9999999999",
               },
               notes: {
                   address: "Test Address",
               },
               theme: {
-                  color: "#3399cc",
+                  color: "#33cc61ff",
               },
           };
-  
           const rzp = new window.Razorpay(options);
           rzp.open();
-  
-          return options
-  
-  
-      }
-
-
- }
+          return options;
+        }
   const onCloseModal = () => setOpen(false);
            const [data, setData]=useState([])
             useEffect(()=>{
@@ -130,12 +119,16 @@ setOpen(true);
             {/* <p className="btn btn-success"> DONATE NGO
             </p> */}
               <button onClick={()=>{onOpenModal(el?.email,el?.name,el?.id)}} type="button">DONATE NOW</button>
-      <Modal open={open} onClose={onCloseModal} center>
-        <h2>Simple centered modal</h2>
+          <Modal open={open} onClose={onCloseModal} center>
         <label name = "amt" id="amt">Enter the Amount</label>
-        <input name="amt" id="amt" type="number" required>
-        </input>  value={donate} onChange={(e)=>{
-                                    setDonate(e.target.value)}}
+        <input
+          name="amt"
+          id="amt"
+          type="number"
+          required
+          value={donate}
+          onChange={(e) => setDonate(e.target.value)}
+        />
         
         <button onClick={()=>{donatenow(el?.email,el?.name,el?.id)}}>Donate</button>
       </Modal>
@@ -149,4 +142,5 @@ setOpen(true);
 
                 </>
             )
+          }
        

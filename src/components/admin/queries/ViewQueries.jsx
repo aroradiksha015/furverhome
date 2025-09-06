@@ -66,9 +66,6 @@ export default function ViewQueries() {
                             <td>{q?.name}</td>
                             <td>{q?.email}</td>
                             <td>{q?.message}</td>
-                            <td>
-                            <button className="btn btn-success btn-sm">Respond</button>
-                            </td>
                         </tr>
                         ))
                     ) : (
