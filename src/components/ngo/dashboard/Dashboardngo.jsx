@@ -6,6 +6,8 @@ import { db } from "../../Firebase";
 export default function DashboardNGO(){
    const [pets,setPets] = useState([])
   const[request,setRequests] = useState([])
+  const[payments,setPayments] = useState([])
+
     const email = sessionStorage.getItem("email");
     useEffect(()=>{
               fetchData()
@@ -29,6 +31,17 @@ export default function DashboardNGO(){
                         })
                         setRequests(requestsData)
                         console.log("data", requestsData);
+                    })
+                    const q3 = query(
+                      collection(db, "payments"),
+                      where("ngoemail", "==", email)
+                    );
+                    onSnapshot(q3,(paymentsCol)=>{
+                        let paymentsData=paymentsCol.docs.map((el)=>{
+                        return{...el.data(),id: el.id};   
+                        })
+                        setPayments(paymentsData)
+                        console.log("data", paymentsData);
                     })
                 }
     return(
@@ -82,6 +95,17 @@ export default function DashboardNGO(){
         <div className="card-body">
           <h5 className="card-title fs-4 fw-bold">Adoption Requests</h5>
           <h2 className="display-4 text-success"> {request.length>0?request.length:"0"}</h2>
+        </div>
+        </Link>
+      </div>
+    </div>
+
+    <div className="col-md-4 my-2">
+      <div className="card text-center shadow-lg p-4" style={{ minHeight: "180px" }}>
+        <Link to = "/ngo/viewDonations">
+        <div className="card-body">
+          <h5 className="card-title fs-4 fw-bold">Donations</h5>
+          <h2 className="display-4 text-success"> {payments.length>0?payments.length:"0"}</h2>
         </div>
         </Link>
       </div>
