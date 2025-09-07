@@ -20,11 +20,12 @@ export default function DashboardNGO(){
                         })
                         setPets(petsData)
                     })
-                    const q2 = query(
-                      collection(db, "adoptionRequests"),
-                      where("ngoemail", "==", email),
-                      where("status", "==", false)  // ✅ add status filter
-                    );
+                              const q2 = query(
+                        collection(db, "adoptionRequests"),
+                        where("ngoemail", "==", email),
+                        where("status", "==", "false")
+                      );
+                    
                     onSnapshot(q2,(requestCol)=>{
                         let requestsData=requestCol.docs.map((el)=>{
                         return{...el.data(),id: el.id};   

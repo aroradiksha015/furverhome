@@ -42,7 +42,7 @@ export default function AdminDashboard() {
                     })
                       setBreeds(breedsData)
                   })
-                  let queriesq=query(collection(db,"contact"),where("status", "==", "pending"));
+                  let queriesq=query(collection(db,"contact"));
                onSnapshot(queriesq,(queriesCol)=>{
                     let queriesData=queriesCol.docs.map((el)=>{
                         return{...el.data(),id: el.id}; 
