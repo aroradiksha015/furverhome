@@ -96,7 +96,15 @@ export function ManageUsers(){
               <td>{el?.email}</td>
               <td>{el?.contact}</td>
               <td>
-                <Link className="btn btn-success" onClick={()=>{changeStatus(el?.id,el?.status)}}>{el.status?"Change Status":"Status:false"}</Link>
+                {/* <Link className="btn btn-success" onClick={()=>{changeStatus(el?.id,el?.status)}}>{el.status?"Change Status":"Status:false"}</Link> */}
+
+                <Link
+                className={`btn ${el?.status ? "btn-success" : "btn-danger"}`}
+                onClick={() => changeStatus(el?.id, el?.status)}
+              >
+                {el?.status ? "Status: true" : "Status: false"}
+              </Link>
+
 
               </td>
             </tr>

@@ -20,8 +20,11 @@ export default function AddNGO(){
                .then(async(userCred)=>{
                    console.log(userCred.user.uid)
                    toast.success("Registered Successfully")
-                   await saveData(userCred.user.uid)
-                   nav("/ngo")
+                   await saveData(userCred.user.uid);
+                    setTimeout(() => {
+                    nav("/admin/manageNGO");
+                    }, 5000); 
+
                })
                .catch((err)=>{
                    toast.error(err.message);

@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth, db } from "../Firebase"
 import { toast } from "react-toastify"
 import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore"
 export default function Register(){
+    let nav = useNavigate()
     const [name, setName]=useState("")
     const [email, setEmail]=useState("")
     const [password, setPassword]=useState("")
@@ -15,7 +16,8 @@ export default function Register(){
         .then((userCred)=>{
             console.log(userCred.user.uid)
             toast.success("Registered Successfully")
-            saveData(userCred.user.uid)
+            saveData(userCred.user.uid);
+            nav("/login")
         })
         .catch((err)=>{
             toast.error(err.message);
@@ -40,7 +42,7 @@ export default function Register(){
                 let userDoc=await getDoc(doc(db, "users", userId))
                 console.log(userDoc.data());
                 // let userData=userDoc.data()
-                sessionStorage.setItem("isLogin", true)
+                // sessionStorage.setItem("isLogin", true)
     }
 
     return(

@@ -50,7 +50,7 @@ export default function AdoptionRequest(){
         userId: sessionStorage.getItem("userID"),
         userName: sessionStorage.getItem("name"),
         userEmail: sessionStorage.getItem("email"),
-        status: "false",
+        status:false,
         createdAt: Timestamp.now(),
       };
 
@@ -114,7 +114,7 @@ export default function AdoptionRequest(){
                                 Salary
                             </label>
                             <input
-                                type="text"
+                                type="number"
                                 required
                                 className="form-control"
                                 name="salary"

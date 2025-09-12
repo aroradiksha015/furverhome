@@ -63,7 +63,7 @@ export default function Donation() {
                                     <td>{index + 1}</td>
                                     <td>{el?.username || "No Subject"}</td>
                                     <td>{el?.ngoname}</td>
-                                    <td>{el?.amt}</td>
+                                    <td>{'\u20B9'}{el?.amt}</td>
                                     <td>{el?.PaymentId || "N/A"}</td>
                                     </tr>
                                 ))

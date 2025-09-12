@@ -96,8 +96,13 @@ export default function ManageNGO(){
                                         <td>{el?.contact}</td>
                                         <td>{el?.address}</td>
                                         <td>
-                                       <Link className="btn btn-success"onClick={()=>{changeStatus(el?.id,el.status)}}>{el.status?"Change Status":"Status:false"}</Link>
-                                        </td>
+                                    <Link
+                                className={`btn ${el?.status ? "btn-success" : "btn-danger"}`}
+                                onClick={() => changeStatus(el?.id, el?.status)}
+                            >
+                                {el?.status ? "Status: true" : "Status: false"}
+                            </Link>
+                            </td>
                                     </tr>
                                 ))}
                             </tbody>

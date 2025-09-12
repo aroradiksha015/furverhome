@@ -155,31 +155,30 @@ export default function Header() {
                   Contact
                 </Link>
               </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="dropdown-toggle nav-link"
-                  href="#"
-                  role="button"
-                  id="dropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Register
-                </a>
-                <div
-                  className="dropdown-menu"
-                  aria-labelledby="dropdownMenuLink"
-                >
-                  <Link to="/register" className="dropdown-item">
-                    {" "}
-                    Register as a User
-                  </Link>
-                  <Link to="/registerNGO" className="dropdown-item">
-                    Register As an NGO
-                  </Link>
-                </div>
-              </li>
+                {!isLogin && (
+                    <li className="nav-item dropdown">
+                      <a
+                        className="dropdown-toggle nav-link"
+                        href="#"
+                        role="button"
+                        id="dropdownMenuLink"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        Register
+                      </a>
+                      <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <Link to="/register" className="dropdown-item">
+                          Register as a User
+                        </Link>
+                        <Link to="/registerNGO" className="dropdown-item">
+                          Register as an NGO
+                        </Link>
+                      </div>
+                    </li>
+                  )}
+
               {
                 //condition?true:false
                 isLogin ? (

@@ -21,7 +21,7 @@ export default function RegisterNGO(){
             console.log(userCred.user.uid)
             toast.success("Registered Successfully")
             await saveData(userCred.user.uid)
-            nav("/ngo")
+            nav("/login")
         })
         .catch((err)=>{
             toast.error(err.message);
