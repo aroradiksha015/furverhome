@@ -23,7 +23,7 @@ import UpdatePet from './components/ngo/UpdatePet';
 import UpdateNGO from './components/admin/ngos/UpdateNGO';
 import { ManageUsers } from './components/admin/users/ManageUsers';
 import UpdatePets from './components/admin/pets/UpdatePets';
-import AdoptionRequest from './components/user/adoptionRequest';
+import AdoptionRequest from './components/user/AdoptionRequest';
 import Petdetails from './components/user/PetDetails';
 import ViewQueries from './components/admin/queries/ViewQueries';
 import ViewRequests from './components/admin/requests/ViewRequests';
