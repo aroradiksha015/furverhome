@@ -29,7 +29,7 @@ import ViewQueries from './components/admin/queries/ViewQueries';
 import ViewRequests from './components/admin/requests/ViewRequests';
 import Login from './components/auth/Login';
 import DashboardAdmin from './components/admin/dashboard/DashboardAdmin';
-import DashboardNGO from './components/ngo/dashboard/dashboardNGO';
+import DashboardNGO from './components/ngo/dashboard/Dashboardngo';
 import ViewAdoptionRequets from './components/ngo/ViewAdoptionRequests';
 import TrackRequest from './components/user/TrackRequest';
 import 'react-responsive-modal/styles.css';
