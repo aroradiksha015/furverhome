@@ -46,7 +46,7 @@ export default function ViewQueries() {
 
                 <div className="container my-5">
                 <h2 className="mb-4 text-center">User Queries</h2>
-                <div className="container my-5 table-responsive">
+                <div className="table-responsive">
 
                 <table className="table table-bordered table-striped table-hover">
                     <thead className="table-dark">

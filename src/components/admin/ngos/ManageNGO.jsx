@@ -70,9 +70,9 @@ export default function ManageNGO(){
                         </div>
                         </div>
                     </section>
-                    <div className="container my-5">
+                    <div className="container-fluid my-5">
                         <h1>Manage NGO</h1>
-                       <div className="container my-5 table-responsive">
+                       <div className="table-responsive">
                         <table className="table table-bordered table-striped table-hover">
                             <thead className="table-dark">
                                 <tr>

@@ -52,7 +52,7 @@ export default function ViewRequests(){
             </section>
             <div className="container my-5">
                 <h1>View Adoption Request</h1>
-                <div className="container my-5 table-responsive">
+                <div className="table-responsive">
 
                 <table className="table table-bordered table-striped table-hover">
                     <thead className="table-dark">
