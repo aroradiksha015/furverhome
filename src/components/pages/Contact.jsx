@@ -148,6 +148,7 @@ export default function Contact(){
                                   </label>
                                   <input
                                     type="text"
+                                    required
                                     className="form-control"
                                     name="name"
                                     id="name"
@@ -166,6 +167,7 @@ export default function Contact(){
                                   </label>
                                   <input
                                     type="email"
+                                     required
                                     className="form-control"
                                     name="email"
                                     id="email"
@@ -184,6 +186,7 @@ export default function Contact(){
                                   </label>
                                   <input
                                     type="text"
+                                     required
                                     className="form-control"
                                     name="subject"
                                     id="subject"
@@ -202,6 +205,7 @@ export default function Contact(){
                                   </label>
                                   <textarea
                                     name="message"
+                                     required
                                     className="form-control"
                                     id="message"
                                     cols={30}

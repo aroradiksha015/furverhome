@@ -79,7 +79,7 @@ export default function ManageBreeds(){
             </section>
             <div className="container my-5">
                 <h1>Manage Breed</h1>
-                <div className="container my-5 tabble-responsive">
+                <div className="container my-5 table-responsive">
                 <table className="table table-bordered table-striped table-hover">
                     <thead className="table-dark">
                         <tr>

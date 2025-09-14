@@ -47,7 +47,7 @@ export default function ViewDonation() {
 
                 <div className="container my-5">
                 <h2 className="mb-4 text-center">User Donation</h2>
-                <div className="container my-5 tabble-responsive">
+                <div className="container my-5 table-responsive">
 
                 <table className="table table-bordered table-striped table-hover">
                     <thead className="table-dark">
