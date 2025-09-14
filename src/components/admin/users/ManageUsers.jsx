@@ -76,6 +76,8 @@ export function ManageUsers(){
       <h1 className="text-dark pt-5 mt-4 row d-flex justify-content-center text-center" >Manage Users</h1>
     </div>
     <div className="container my-5">
+                <div className="container my-5 tabble-responsive">
+
          <table className="table table-bordered table-striped table-hover">
         <thead className="table-dark">
           <tr>
@@ -111,6 +113,7 @@ export function ManageUsers(){
           ))}
       </tbody>
       </table>
+      </div>
     </div>
     </>
   )

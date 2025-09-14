@@ -72,6 +72,7 @@ export default function ManageNGO(){
                     </section>
                     <div className="container my-5">
                         <h1>Manage NGO</h1>
+                       <div className="container my-5 tabble-responsive">
                         <table className="table table-bordered table-striped table-hover">
                             <thead className="table-dark">
                                 <tr>
@@ -107,7 +108,9 @@ export default function ManageNGO(){
                                 ))}
                             </tbody>
                         </table>
+                        </div>
                     </div>
+
                 </>
             )
         }

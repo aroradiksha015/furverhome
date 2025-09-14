@@ -52,7 +52,7 @@ function App() {
       <Route path="petDetails/:id" element={<Petdetails/>}></Route>                              
       <Route path = "addRequest/:id/:ngoemail/:petname"  element={<AdoptionRequest/>}></Route>
       <Route path ="trackRequest" element={<TrackRequest/>}></Route>
-        </Route>
+      </Route>
       <Route path="*" element={<Error/>}></Route>
       {/* {admin} */}
       <Route path="/admin" element={<MasterAdmin/>}>

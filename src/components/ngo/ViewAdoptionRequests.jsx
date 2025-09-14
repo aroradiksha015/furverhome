@@ -77,6 +77,8 @@ export default function ViewAdoptionRequets(){
             </section>
             <div className="container my-5">
                 <h1>View Adoption Request</h1>
+                <div className="container my-5 tabble-responsive">
+
                 <table className="table table-bordered table-striped table-hover">
                     <thead className="table-dark">
                         <tr>
@@ -121,6 +123,7 @@ export default function ViewAdoptionRequets(){
                         ))}
                     </tbody>
                 </table>
+                </div>
             </div>
         </>
     )

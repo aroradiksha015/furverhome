@@ -46,6 +46,7 @@ export default function Donation() {
 
                 <div className="container my-5">
                 <h2 className="mb-4 text-center">User Donation</h2>
+                <div className="container my-5 tabble-responsive">
                 <table className="table table-bordered table-striped table-hover">
                     <thead className="table-dark">
                     <tr>
@@ -75,6 +76,7 @@ export default function Donation() {
 
                     </tbody>
                 </table>
+                </div>
                 </div> 
       
     </>
