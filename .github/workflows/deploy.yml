@@ -25,7 +25,7 @@ jobs:
             docker stop fureverhome-container || true
             docker rm fureverhome-container || true
 
-            docker build -t fureverhome .
+            docker build --no-cache -t fureverhome .
 
             docker run -d -p 80:80 \
             --name fureverhome-container \
