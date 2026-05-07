@@ -100,7 +100,7 @@ export default function Home(){
                       <span className="flaticon-dog-eating" />
                     </div>
                     <div className="media-body">
-                      <h3 className="heading">Why choose Adoption?</h3>
+                      <h3 className="heading">Why choose adoption?</h3>
                       <p>
                       When you adopt,you're giving a second chance to a life in need. You're not just saving a pet - you're gaining a loyal companion and opening space for another rescue.
                       </p>
