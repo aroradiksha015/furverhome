@@ -18,7 +18,7 @@ export default function About(){
                       </Link>
                     </span>{" "}
                     <span>
-                      About us <i className="ion-ios-arrow-forward" />
+                      About US <i className="ion-ios-arrow-forward" />
                     </span>
                   </p>
                   <h1 className="mb-0 bread">About Us</h1>
