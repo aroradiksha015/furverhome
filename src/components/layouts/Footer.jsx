@@ -8,7 +8,7 @@ export default function footer(){
         <div className="col-md-6 col-lg-3 mb-4 mb-md-0">
           <h2 className="footer-heading">FurEverHome</h2>
           <p>
-           Becasuse every paw deserves a place call home!!
+           Becasuse every paw deserves a place call Home!
           </p>
           <ul className="ftco-footer-social p-0">
             <li className="ftco-animate">
