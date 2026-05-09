@@ -28,6 +28,6 @@ jobs:
 
             docker build --no-cache -t fureverhome .
 
-            docker run -d -p 80:80 \
-            --name fureverhome-container \
-            fureverhome
+            docker run -d -p 80:80 --name fureverhome-container fureverhome
+
+
