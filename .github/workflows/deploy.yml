@@ -20,6 +20,7 @@ jobs:
 
           script: |
             cd fureverhome
+            git reset --hard HEAD
             git pull origin main
 
             docker stop fureverhome-container || true
